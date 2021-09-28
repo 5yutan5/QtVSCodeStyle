@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "QtVSCodeStyle"
+version = "0.1.5"
+description = "VS Code Style for PySide, PyQt."
+authors = ["Yunosuke Ohsugi <63651161+5yutan5@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/5yutan5/QtVSCodeStyle"
+homepage = "https://github.com/5yutan5/QtVSCodeStyle"
+packages = [{ include = "qtvscodestyle" }]
+include = ["NOTICE.md"]
+
+keywords = ["qt", "stylesheets", "vscode"]
+
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Environment :: X11 Applications :: Qt",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+typing-extensions = "*"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+flake8 = "^3.9.2"
+pyproject-flake8 = "^0.0.1-alpha.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.flake8]
+max-line-length = 119
+max-complexity = 10
+extend-ignore = "E203"
+per-file-ignores = ["qtvscodestyle/vscode/color_registry.py:F841"]
+
+[tool.black]
+line-length = 119
+
+[tool.isort]
+profile = "black"
+line_length = 119

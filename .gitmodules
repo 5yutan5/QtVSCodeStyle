@@ -1,0 +1,3 @@
+[submodule "qtvscodestyle/qtpy"]
+	path = qtvscodestyle/qtpy
+	url = https://github.com/5yutan5/qtpy_qt6.git
