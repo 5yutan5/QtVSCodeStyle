@@ -82,7 +82,9 @@ def _parse_url(stylesheet: str, dir_path: Path, is_designer: bool = False) -> tu
         file_name = f"{icon.replace('.svg', '')}_{id}_{rotate}.svg"
         urls.add(_Url(icon, id, rotate, dir_path / file_name))
 
-        value = f":/vscode/{file_name}" if is_designer else str(dir_path / file_name)
+        # In windows, the path is a backslash. Replase backslash to slash.
+        full_path = (dir_path / file_name).as_posix()
+        value = f":/vscode/{file_name}" if is_designer else str(full_path)
         replacements[match_text] = f"url({value})"
     return replacements, urls
 
