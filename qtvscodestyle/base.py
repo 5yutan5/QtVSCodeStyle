@@ -9,7 +9,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Optional, Union
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal
 
 from qtvscodestyle.build import build_stylesheet
 from qtvscodestyle.util import multireplace
@@ -26,13 +26,7 @@ shutil.rmtree(str(_RESOURCES_BASE_DIR), ignore_errors=True)
 _RESOURCES_BASE_DIR.mkdir(parents=True, exist_ok=True)
 
 
-class ThemeDict(TypedDict):
-    name: str
-    type: Literal["dark", "light", "hc"]
-    colors: dict[str, str]
-
-
-# In VSCode's default theme file, theme type is not set.
+# In VSCode's default theme file, theme type is not set. Extension themes is no need.
 # So the default theme type is defined here.
 class Theme(Enum):
     LIGHT_VS = {"name": "Light (Visual Studio)", "file_name": "light_vs.json", "type": "light"}
@@ -55,7 +49,7 @@ class Theme(Enum):
 
 def _loads_jsonc(json_text: str) -> dict:
     """wrapper of json.loads() to load jsonc(json with comment) text.
-    Allow comment, and trailing commas inside of dictionaries and lists.
+    Allow comment and trailing commas(inside dictionaries or lists).
     """
     symbol_to_replace_word = {
         "//": "${one_line_comment_symbol}",
@@ -67,7 +61,7 @@ def _loads_jsonc(json_text: str) -> dict:
         "}": "${curly_bracket_right}",
     }
 
-    # Replace invalid symbol to identifier in key or value
+    # Replace invalid symbol to replace word in key or value
     # to exclude certain symbols in a string from substitution.
     def replace_comment_symbol(match: re.Match) -> str:
         return multireplace(match.group(), symbol_to_replace_word)
@@ -113,7 +107,7 @@ def _load_stylesheet(
     elif type(theme) is dict:
         theme_property = theme
     else:
-        raise TypeError()
+        raise TypeError("Invalid type input to theme argument. ")
 
     colors = {**theme_property["colors"], **custom_colors}
     colors = _merge_colors_to_default(colors, theme_property["type"])
@@ -144,7 +138,7 @@ def list_themes():
     for name in themes.keys():
         max_len = max(len(name), max_len)
     print("Theme name:".ljust(max_len) + ": Symbol")
-    print("___________".ljust(max_len, "_") + "________")
+    print("___________".ljust(max_len, " ") + "  " + "______")
     print()
     for name, symbol in themes.items():
         print(name.ljust(max_len) + f": {symbol}")

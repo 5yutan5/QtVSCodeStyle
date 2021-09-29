@@ -47,31 +47,31 @@ document: https://doc.qt.io/qt-5/stylesheet-reference.html#list-of-icons
 
 --------------------------------------------------------------------------- */
 QWidget {
-    backward-icon: $url{"icon_name": "arrow_upward", "color_id": "icon_foreground", "rotate": "270"};
-    forward-icon: $url{"icon_name": "arrow_upward", "color_id": "icon_foreground", "rotate": "90"};
-    leftarrow-icon: $url{"icon_name": "arrow_upward", "color_id": "icon_foreground", "rotate": "270"};
-    rightarrow-icon: $url{"icon_name": "arrow_upward", "color_id": "icon_foreground", "rotate": "90"};
+    backward-icon: $url{"icon": "arrow_upward.svg", "id": "icon_foreground", "rotate": "270"};
+    forward-icon: $url{"icon": "arrow_upward.svg", "id": "icon_foreground", "rotate": "90"};
+    leftarrow-icon: $url{"icon": "arrow_upward.svg", "id": "icon_foreground", "rotate": "270"};
+    rightarrow-icon: $url{"icon": "arrow_upward.svg", "id": "icon_foreground", "rotate": "90"};
 
-    dialog-ok-icon: $url{"icon_name": "check", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-cancel-icon: $url{"icon_name": "close", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-yes-icon: $url{"icon_name": "check_circle", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-no-icon: $url{"icon_name": "cancel", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-apply-icon: $url{"icon_name": "check", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-reset-icon: $url{"icon_name": "restart_alt", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-save-icon: $url{"icon_name": "save", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-discard-icon: $url{"icon_name": "delete", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-close-icon: $url{"icon_name": "close", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-open-icon: $url{"icon_name": "folder_open", "color_id": "icon_foreground", "rotate": "0"};
-    dialog-help-icon: $url{"icon_name": "help", "color_id": "icon_foreground", "rotate": "0"};
+    dialog-ok-icon: $url{"icon": "check.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-cancel-icon: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-yes-icon: $url{"icon": "check_circle.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-no-icon: $url{"icon": "cancel.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-apply-icon: $url{"icon": "check.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-reset-icon: $url{"icon": "restart_alt.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-save-icon: $url{"icon": "save.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-discard-icon: $url{"icon": "delete.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-close-icon: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-open-icon: $url{"icon": "folder_open.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-help-icon: $url{"icon": "help.svg", "id": "icon_foreground", "rotate": "0"};
 
-    filedialog-parent-directory-icon: $url{"icon_name": "arrow_upward", "color_id": "icon_foreground", "rotate": "0"};
-    filedialog-new-directory-icon: $url{"icon_name": "create_new_folder", "color_id": "icon_foreground", "rotate": "0"};
-    titlebar-close-icon: $url{"icon_name": "close", "color_id": "icon_foreground", "rotate": "0"};
-    titlebar-normal-icon: $url{"icon_name": "flip_to_front", "color_id": "icon_foreground", "rotate": "0"};
+    filedialog-parent-directory-icon: $url{"icon": "arrow_upward.svg", "id": "icon_foreground", "rotate": "0"};
+    filedialog-new-directory-icon: $url{"icon": "create_new_folder.svg", "id": "icon_foreground", "rotate": "0"};
+    titlebar-close-icon: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
+    titlebar-normal-icon: $url{"icon": "flip_to_front.svg", "id": "icon_foreground", "rotate": "0"};
 }
 
 QCommandLinkButton {
-    qproperty-icon: $url{"icon_name": "east", "color_id": "icon_foreground", "rotate": "0"};
+    qproperty-icon: $url{"icon": "east.svg", "id": "icon_foreground", "rotate": "0"};
 }
 
 
@@ -169,16 +169,16 @@ QCheckBox::indicator, QRadioButton::indicator {
 }
 
 QRadioButton::indicator:checked {
-    image: $url{"icon_name": "radio_button_checked", "color_id": "checkbox_foreground", "rotate": "0"};
+    image: $url{"icon": "radio_button_checked.svg", "id": "checkbox_foreground", "rotate": "0"};
 }
 QRadioButton::indicator:checked:disabled {
-    image: $url{"icon_name": "radio_button_checked", "color_id": "checkbox_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "radio_button_checked.svg", "id": "checkbox_foreground_disabled", "rotate": "0"};
 }
 QRadioButton::indicator:unchecked {
-    image: $url{"icon_name": "radio_button_unchecked", "color_id": "checkbox_foreground", "rotate": "0"};
+    image: $url{"icon": "radio_button_unchecked.svg", "id": "checkbox_foreground", "rotate": "0"};
 }
 QRadioButton::indicator:unchecked:disabled {
-    image: $url{"icon_name": "radio_button_unchecked", "color_id": "checkbox_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "radio_button_unchecked.svg", "id": "checkbox_foreground_disabled", "rotate": "0"};
 }
 
 /* QGroupBox --------------------------------------------------------------
@@ -240,11 +240,11 @@ QToolBar {
 }
 QToolBar::handle:horizontal {
     width: 20px;
-    image: $url{"icon_name": "drag_indicator", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "drag_indicator.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QToolBar::handle:vertical {
     height: 20px;
-    image: $url{"icon_name": "drag_indicator", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "drag_indicator.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QToolBar::separator {
     background-color: $menu_separatorBackground;
@@ -265,18 +265,18 @@ QToolBar > QToolButton {
 QToolBar > QToolButton#qt_toolbar_ext_button,
 QToolBar[orientation="1"] > QToolButton#qt_toolbar_ext_button {
     qproperty-icon: none;
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QToolBar > QToolButton#qt_toolbar_ext_button:disabled,
 QToolBar[orientation="1"] > QToolButton#qt_toolbar_ext_button:disabled {
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 QToolBar > QToolButton#qt_toolbar_ext_button {
     qproperty-icon: none;
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QToolBar[orientation="2"] > QToolButton#qt_toolbar_ext_button:disabled {
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 
 /* QMenu ------------------------------------------------------------------
@@ -314,10 +314,10 @@ QMenu::right-arrow {
     padding-left: 12px;
     height: 20px;
     width: 20px;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QMenu::right-arrow:disabled {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 
 /* QScrollBar -------------------------------------------------------------
@@ -443,11 +443,11 @@ QToolButton::menu-indicator,
 QToolButton::menu-arrow {
     height: 18px;
     width: 18px;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "180"};
 }
 QToolButton::menu-indicator:disabled,
 QToolButton::menu-arrow {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "180"};
 }
 QToolButton::menu-indicator {
     top: 6px;
@@ -481,10 +481,10 @@ QComboBox::drop-down {
 QComboBox::down-arrow {
     height: 23px;
     width: 23px;
-    image: $url{"icon_name": "expand_less", "color_id": "foreground", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "foreground", "rotate": "180"};
 }
 QComboBox::down-arrow:disabled {
-    image: $url{"icon_name": "expand_less", "color_id": "foreground_disabled", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "foreground_disabled", "rotate": "180"};
 }
 /* Remove indicator. Warning: This setting is not mentioned in the documentation.*/
 QComboBox::indicator {
@@ -553,10 +553,10 @@ examples: https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-qtabwidget
 
 --------------------------------------------------------------------------- */
 QTabBar::close-button:selected {
-    image: $url{"icon_name": "close", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QTabBar::close-button, QTabBar::close-button:disabled {
-    image: $url{"icon_name": "close", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "close.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 QTabBar::tab {
     padding: 3px;
@@ -688,17 +688,17 @@ QSplitter::handle:hover {
 }
 QSplitter::handle:horizontal {
     width: 5px;
-    image: $url{"icon_name": "horizontal_rule", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QSplitter::handle:horizontal:disabled {
-    image: $url{"icon_name": "horizontal_rule", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 QSplitter::handle:vertical {
     height: 5px;
-    image: $url{"icon_name": "horizontal_rule", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QSplitter::handle:vertical:disabled {
-    image: $url{"icon_name": "horizontal_rule", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 
 /*
@@ -906,13 +906,13 @@ QTreeView::branch:hover:!selected:!has-children {
 
 
 QTreeView::branch {
-    border-image: $url{"icon_name": "vertical_line", "color_id": "tree_indentGuidesStroke_inActive", "rotate": "0"} 0;
+    border-image: $url{"icon": "vertical_line.svg", "id": "tree_indentGuidesStroke_inActive", "rotate": "0"} 0;
 }
 QTreeView::branch:active {
-    border-image: $url{"icon_name": "vertical_line", "color_id": "tree_indentGuidesStroke", "rotate": "0"} 0;
+    border-image: $url{"icon": "vertical_line.svg", "id": "tree_indentGuidesStroke", "rotate": "0"} 0;
 }
 QTreeView::branch:disabled {
-    border-image: $url{"icon_name": "vertical_line", "color_id": "tree_indentGuidesStroke_disabled", "rotate": "0"} 0;
+    border-image: $url{"icon": "vertical_line.svg", "id": "tree_indentGuidesStroke_disabled", "rotate": "0"} 0;
 }
 QTreeView::branch:has-siblings:adjoins-item,
 QTreeView::branch:!has-children:!has-siblings:adjoins-item {
@@ -921,36 +921,36 @@ QTreeView::branch:!has-children:!has-siblings:adjoins-item {
 QTreeView::branch:has-children:!has-siblings:closed,
 QTreeView::branch:has-children:has-siblings:closed {
     border-image: none;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QTreeView::branch:selected:has-children:!has-siblings:closed,
 QTreeView::branch:selected:closed:has-children:has-siblings {
     border-image: none;
-    image: $url{"icon_name": "expand_less", "color_id": "list_activeSelectionIconForeground", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "list_activeSelectionIconForeground", "rotate": "90"};
 }
 QTreeView::branch:selected:has-children:!has-siblings:closed:disabled,
 QTreeView::branch:selected:closed:has-children:has-siblings:disabled,
 QTreeView::branch:has-children:!has-siblings:closed:disabled,
 QTreeView::branch:has-children:has-siblings:closed:disabled {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 QTreeView::branch:open:has-children:!has-siblings,
 QTreeView::branch:open:has-children:has-siblings,
 QTreeView::branch:open:has-children:!has-siblings,
 QTreeView::branch:open:has-children:has-siblings  {
     border-image: none;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "180"};
 }
 QTreeView::branch:selected:open:has-children:!has-siblings,
 QTreeView::branch:selected:open:has-children:has-siblings  {
     border-image: none;
-    image: $url{"icon_name": "expand_less", "color_id": "list_activeSelectionIconForeground", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "list_activeSelectionIconForeground", "rotate": "180"};
 }
 QTreeView::branch:selected:open:has-children:!has-siblings:disabled,
 QTreeView::branch:selected:open:has-children:has-siblings:disabled,
 QTreeView::branch:open:has-children:!has-siblings:disabled,
 QTreeView::branch:open:has-children:has-siblings:disabled  {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "180"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "180"};
 }
 
 /* QHeaderView ------------------------------------------------------------
@@ -1003,17 +1003,17 @@ QHeaderView::section::last, QHeaderView::section::only-one {
 }
 QHeaderView::down-arrow {
     width: 20px;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QHeaderView::down-arrow:disabled {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 QHeaderView::up-arrow {
     width: 20px;
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QHeaderView::up-arrow:disabled {
-    image: $url{"icon_name": "expand_less", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "expand_less.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 
 /* QTableView -------------------------------------------------------------
@@ -1040,7 +1040,7 @@ QTableView QTableCornerButton::section {
     border-bottom: 2px solid transparent;
     background-color: transparent;
     /* Same color as the QHeaderView selction. */
-    image: $url{"icon_name": "corner_button", "color_id": "debugToolBar_background", "rotate": "0"};
+    image: $url{"icon": "corner_button.svg", "id": "debugToolBar_background", "rotate": "0"};
 
     $type_patch{
         "types": "hc",
@@ -1048,7 +1048,7 @@ QTableView QTableCornerButton::section {
     };
 }
 QTableView QTableCornerButton::section:pressed {
-    image: $url{"icon_name": "corner_button", "color_id": "focusBorder", "rotate": "0"};
+    image: $url{"icon": "corner_button.svg", "id": "focusBorder", "rotate": "0"};
 }
 
 /* QCalendarWidget --------------------------------------------------------
@@ -1091,10 +1091,10 @@ QAbstractSpinBox::up-button {
     padding: 2px 1px 0 1px;
 }
 QAbstractSpinBox::up-arrow {
-    image: $url{"icon_name": "arrow_drop_up", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "arrow_drop_up.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QAbstractSpinBox::up-arrow:disabled {
-    image: $url{"icon_name": "arrow_drop_up", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "arrow_drop_up.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 QAbstractSpinBox::down-button {
     subcontrol-position: bottom right;
@@ -1102,10 +1102,10 @@ QAbstractSpinBox::down-button {
     padding: 0 1px 2px 1px;
 }
 QAbstractSpinBox::down-arrow {
-    image: $url{"icon_name": "arrow_drop_up", "color_id": "icon_foreground", "rotate": "180"};
+    image: $url{"icon": "arrow_drop_up.svg", "id": "icon_foreground", "rotate": "180"};
 }
 QAbstractSpinBox::down-arrow:disabled {
-    image: $url{"icon_name": "arrow_drop_up", "color_id": "icon_foreground_disabled", "rotate": "180"};
+    image: $url{"icon": "arrow_drop_up.svg", "id": "icon_foreground_disabled", "rotate": "180"};
 }
 
 /* QDateTimeEdit ----------------------------------------------------------
@@ -1116,10 +1116,10 @@ QDateTimeEdit::drop-down {
     border: none;
     padding-right: 4px;
     width: 16px;
-    image: $url{"icon_name": "calendar_today", "color_id": "icon_foreground", "rotate": "0"};
+    image: $url{"icon": "calendar_today.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QDateTimeEdit::drop-down:disabled {
-    image: $url{"icon_name": "calendar_today", "color_id": "icon_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "calendar_today.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 /*
 There is a bug in Qt, where the down-arrow icon show when `calendarPopup = True`.
@@ -1164,24 +1164,24 @@ QCheckBox::indicator:checked,
 QGroupBox::indicator:checked,
 QTreeView::indicator:checked,
 QMenu::indicator:checked {
-    image: $url{"icon_name": "check", "color_id": "checkbox_foreground", "rotate": "0"};
+    image: $url{"icon": "check.svg", "id": "checkbox_foreground", "rotate": "0"};
 }
 QAbstractItemView::indicator:checked:disabled,
 QCheckBox::indicator:checked:disabled,
 QGroupBox::indicator:checked:disabled,
 QTreeView::indicator:checked:disabled,
 QMenu::indicator:checked:disabled {
-    image: $url{"icon_name": "check", "color_id": "checkbox_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "check.svg", "id": "checkbox_foreground_disabled", "rotate": "0"};
 }
 QAbstractItemView::indicator:indeterminate,
 QCheckBox::indicator:indeterminate,
 QTreeView::indicator:indeterminate {
-    image: $url{"icon_name": "horizontal_rule", "color_id": "checkbox_foreground", "rotate": "0"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "checkbox_foreground", "rotate": "0"};
 }
 QAbstractItemView::indicator:indeterminate:disabled,
 QCheckBox::indicator:indeterminate:disabled,
 QTreeView::indicator:indeterminate:disabled {
-    image: $url{"icon_name": "horizontal_rule", "color_id": "checkbox_foreground_disabled", "rotate": "0"};
+    image: $url{"icon": "horizontal_rule.svg", "id": "checkbox_foreground_disabled", "rotate": "0"};
 }
 
 /* Action -----------------------------------------------------------------
@@ -1305,10 +1305,10 @@ QToolBar[type="activitybar"] > QToolButton:pressed {
     $type_patch{"types": "hc", "value": "border-style: solid;"};
 }
 QToolBar[type="activitybar"] > QToolButton#qt_toolbar_ext_button {
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground", "rotate": "90"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground", "rotate": "90"};
 }
 QToolBar[type="activitybar"] > QToolButton#qt_toolbar_ext_button:disabled {
-    image: $url{"icon_name": "double_arrow", "color_id": "icon_foreground_disabled", "rotate": "90"};
+    image: $url{"icon": "double_arrow.svg", "id": "icon_foreground_disabled", "rotate": "90"};
 }
 
 /* QLineEdit --------------------------------------------------------------

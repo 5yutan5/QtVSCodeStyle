@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import argparse
 import json
 from pathlib import Path
@@ -15,8 +17,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-t",
         "--theme",
-        help=f"""Theme symbol.\n
-        Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
+        help=f"""Theme symbol. Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
         """,
         default=Theme.DARK_VS.name.lower(),
     )
@@ -35,14 +36,14 @@ def _parse_args() -> argparse.Namespace:
     return args
 
 
-def _generate_template(
+def _build_resources(
     save_dir_path: Union[Path, str], custom_colors: dict[str, str], theme: qtvscodestyle.Theme
 ) -> None:
     save_dir_path = Path(save_dir_path)
     try:
         save_dir_path.mkdir()
     except FileExistsError:
-        pass
+        raise FileExistsError("This folder contains files. Resources can only build to empty folder.") from None
 
     svg_dir = save_dir_path / "svg"
     svg_dir.mkdir(exist_ok=True)
@@ -56,15 +57,19 @@ def _generate_template(
         f.write(stylesheet)
 
     # generate resource file
-    rcc_tag = ET.Element("RCC", {"version": "1.0"})
-    qt_resource_tag = ET.SubElement(rcc_tag, "qresource", {"prefix": "vscode"})
+    main_tag = ET.Element("RCC", {"version": "1.0"})
+    main_tag.text = "\n  "
+    qt_resource_tag = ET.SubElement(main_tag, "qresource", {"prefix": "vscode"})
+    qt_resource_tag.tail = "\n"
+    qt_resource_tag.text = "\n    "
 
     for file in svg_dir.iterdir():
         file_tag = ET.SubElement(qt_resource_tag, "file", {"alias": file.name})
         file_tag.text = f"{svg_dir.name}/{file.name}"
+        file_tag.tail = "\n    "
 
     resource_file_name = str(resource_file_path)
-    ET.ElementTree(rcc_tag).write(resource_file_name, "utf-8")
+    ET.ElementTree(main_tag).write(resource_file_name, "utf-8")
 
 
 if __name__ == "__main__":
@@ -79,9 +84,9 @@ if __name__ == "__main__":
             break
     else:
         raise Exception(
-            f"""Use the correct theme symbol.
-        Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
-        """
+            f"""
+            Invalid symbol in theme option. Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
+            """
         )
 
     if custom_colors_dir_path is not None:
@@ -90,4 +95,4 @@ if __name__ == "__main__":
     else:
         custom_colors = {}
 
-    _generate_template(output_dir_path, custom_colors, theme)
+    _build_resources(output_dir_path, custom_colors, theme)

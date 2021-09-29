@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import json
+import operator
 import re
-from dataclasses import asdict, dataclass
-from distutils.version import LooseVersion
+from dataclasses import dataclass
+from distutils.version import StrictVersion
 from importlib import resources
 from pathlib import Path
 from typing import Optional
@@ -15,102 +16,101 @@ from qtvscodestyle.vscode.color import Color
 # A class that handle the properties of the $url{...} variable in the stylesheet template.
 @dataclass(unsafe_hash=True, frozen=True)
 class _Url:
-    icon_name: str
-    color_id: str
+    icon: str
+    id: str
     rotate: str
-    file_name: str
+    path: Path
 
 
 def _parse_env_patch(stylesheet: str) -> dict[str, str]:
-    from qtvscodestyle.qtpy import __version__ as qt_version  # type: ignore
+    try:
+        from qtvscodestyle.qtpy import __version__ as qt_version
+    except ImportError:
+        print("Failed to load Qt version. Load as the latest version.")
+        qt_version = "10.0.0"  # Fairly future version for always setting latest version.
 
-    qualifiers = {
-        "equal": "==",
-        "unequal": "!=",
-        "greater": ">",
-        "less": "<",
-        "greater_equal": ">=",
-        "less_equal": "<=",
-    }
-    functions = {
-        "==": lambda version, value: value if LooseVersion(qt_version) == LooseVersion(version) else "",
-        "!=": lambda version, value: value if LooseVersion(qt_version) != LooseVersion(version) else "",
-        ">": lambda version, value: value if LooseVersion(qt_version) > LooseVersion(version) else "",
-        "<": lambda version, value: value if LooseVersion(qt_version) < LooseVersion(version) else "",
-        ">=": lambda version, value: value if LooseVersion(qt_version) >= LooseVersion(version) else "",
-        "<=": lambda version, value: value if LooseVersion(qt_version) <= LooseVersion(version) else "",
+    # greater_equal and less_equal must be evaluated before greater and less.
+    operators = {
+        "==": operator.eq,  # equal
+        "!=": operator.ne,  # unequal
+        ">=": operator.ge,  # greater_equal
+        "<=": operator.le,  # less_equal
+        ">": operator.gt,  # greater
+        "<": operator.lt,  # less
     }
     replacements = {}
 
-    for match in re.finditer(r"(?<=\$env_patch)\{.+\}", stylesheet):
-        json_text = match.group()
-        match_text = f"$env_patch{json_text}"
+    for match in re.finditer(r"\$env_patch\{[\s\S]*?\}", stylesheet):
+        match_text = match.group()
+        json_text = match_text.replace("$env_patch", "")
         property: dict[str, str] = json.loads(json_text)
 
-        qualifier = ""
-        if qualifiers["equal"] in property["version"]:
-            qualifier = qualifiers["equal"]
-        elif qualifiers["unequal"] in property["version"]:
-            qualifier = qualifiers["unequal"]
-        elif qualifiers["greater_equal"] in property["version"]:
-            qualifier = qualifiers["greater_equal"]
-        elif qualifiers["less_equal"] in property["version"]:
-            qualifier = qualifiers["less_equal"]
-        elif qualifiers["greater"] in property["version"]:
-            qualifier = qualifiers["greater"]
-        elif qualifiers["less"] in property["version"]:
-            qualifier = qualifiers["less"]
+        for qualifier in operators.keys():
+            if qualifier in property["version"]:
+                version = property["version"].replace(qualifier, "")
+                break
+        else:
+            raise SyntaxError(f"invalid character in qualifier. Available qualifiers {list(operators.keys())}")
 
-        version = property["version"].replace(qualifier, "")
-        replacements[match_text] = functions[qualifier](version, property["value"])
+        is_true = operators[qualifier](StrictVersion(qt_version), StrictVersion(version))
+        replacements[match_text] = property["value"] if is_true else ""
     return replacements
 
 
-def _parse_theme_type_patch(stylesheet: str, theme_type) -> dict[str, str]:
+def _parse_theme_type_patch(stylesheet: str, theme_type: str) -> dict[str, str]:
     replacements = {}
-    for match in re.finditer(r"(?<=\$type_patch)\{[\s\S]*?\};", stylesheet):
-        json_text = match.group().rstrip(";")
+    for match in re.finditer(r"\$type_patch\{[\s\S]*?\};", stylesheet):
+        match_text = match.group().rstrip(";")
+        json_text = match_text.replace("$type_patch", "")
+
         property: dict[str, str] = json.loads(json_text)
         theme_types = property["types"].replace(" ", "").split("|")
         value = property["value"]
         qss_text = "\n".join(value if type(value) is list else [value])
-        replacements[f"$type_patch{json_text}"] = qss_text if theme_type in theme_types else ""
+        replacements[match_text] = qss_text if theme_type in theme_types else ""
     return replacements
 
 
-def _parse_url(stylesheet: str) -> set[_Url]:
+def _parse_url(stylesheet: str, dir_path: Path, is_designer: bool = False) -> tuple[dict[str, str], set[_Url]]:
     urls = set()
-    for match in re.finditer(r"(?<=\$url)\{.+\}", stylesheet):
-        icon_name, color_id, rotate = json.loads(match.group()).values()
-        urls.add(_Url(icon_name, color_id, rotate, f"{icon_name}_{color_id}_{rotate}.svg"))
-    return urls
+    replacements = {}
+    for match in re.finditer(r"\$url\{.+\}", stylesheet):
+        match_text = match.group()
+        json_text = match_text.replace("$url", "")
+
+        icon, id, rotate = json.loads(json_text).values()
+        file_name = f"{icon.replace('.svg', '')}_{id}_{rotate}.svg"
+        urls.add(_Url(icon, id, rotate, dir_path / file_name))
+
+        value = f":/vscode/{file_name}" if is_designer else str(dir_path / file_name)
+        replacements[match_text] = f"url({value})"
+    return replacements, urls
 
 
-def _output_converted_svg_file(colors: dict[str, Optional[Color]], urls: set[_Url], dir_path: Path) -> None:
+def _output_converted_svg_file(colors: dict[str, Optional[Color]], urls: set[_Url]) -> None:
     contents = resources.contents("qtvscodestyle.google_fonts")
-    svg_codes = {}
+    svg_codes: dict[str, str] = {}  # {file name: svg code}
     for content in contents:
-        if ".svg" in content:
-            svg_text = resources.read_text("qtvscodestyle.google_fonts", content)
-            icon_name = content.replace(".svg", "")
-            svg_codes[icon_name] = svg_text
+        if ".svg" not in content:  # Only svg file
+            continue
+        svg_code = resources.read_text("qtvscodestyle.google_fonts", content)
+        svg_codes[content] = svg_code
 
-    # QSvg does not support rgba(...).
-    # Therefore, we need to set the alpha value to fill-opacity instead.
-    def to_svg_color(color: Optional[Color]) -> str:
-        if color is not None:
-            r, g, b, a = color.rgba
-            return f'"rgb({r}, {g}, {b})" fill-opacity="{a}"'
-        return '""'
+    # QSvg does not support rgba(...). Therefore, we need to set the alpha value to `fill-opacity` instead.
+    def to_svg_color_format(color: Optional[Color]) -> str:
+        if color is None:
+            return 'fill=""'
+        r, g, b, a = color.rgba
+        return f'fill="rgb({r}, {g}, {b})" fill-opacity="{a}"'
 
     for url in urls:
-        color = colors["$" + url.color_id]
-        svg_code = svg_codes[url.icon_name]
+        color = colors["$" + url.id]
         # Change color and rotate.
-        replacements = {'"#FFFFFF"': to_svg_color(color), "rotate(0,": f"rotate({url.rotate},"}
-        svg_code_converted = multireplace(svg_code, replacements)
+        # See https://stackoverflow.com/a/15139069/13452582
+        new_contents = f'{to_svg_color_format(color)} transform="rotate({url.rotate}, 12, 12)"'
+        svg_code_converted = svg_codes[url.icon].replace('fill="#FFFFFF"', new_contents)
 
-        with (dir_path / url.file_name).open("w") as f:
+        with url.path.open("w") as f:
             f.write(svg_code_converted)
 
 
@@ -128,17 +128,8 @@ def build_stylesheet(
     stylesheet_template = multireplace(stylesheet_template, patch_replacements)
 
     # Parse $url{...} in template stylesheet.
-    urls = _parse_url(stylesheet_template)
-    _output_converted_svg_file(colors, urls, output_svg_path)
-    url_replacements = {}
-    for url in urls:
-        url_dict = asdict(url)
-        file_name = url_dict.pop("file_name")
-        if is_designer:
-            value = f'url(":/vscode/{file_name}")'
-        else:
-            value = f'url("{output_svg_path / file_name}")'
-        url_replacements[f"$url{json.dumps(url_dict)}"] = value
+    url_replacements, urls = _parse_url(stylesheet_template, output_svg_path, is_designer)
+    _output_converted_svg_file(colors, urls)
 
     # Create stylesheet
     colors_str = {id: ("" if color is None else str(color)) for id, color in colors.items()}
