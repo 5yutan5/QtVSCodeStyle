@@ -8,8 +8,8 @@ QtVSCodeStyle
 
 VS Code Style for PySide and PyQt.
 
-QtVSCodeStyle enables to use vscode themes in pyqt and pyside.
-The default and third-party themes of VS Code can be used.
+QtVSCodeStyle enables to use VS Code themes in pyqt and pyside.
+The default and extension themes of VS Code can be used.
 
 
 ## SCREENSHOT
@@ -68,7 +68,7 @@ app.exec()
 
 ```
 
-> ⚠ The quality of image may be low on Qt5(PyQt5, PySide2) when using svg. You can add the following [attribute](https://doc.qt.io/qt-5/qt.html#ApplicationAttribute-enum) to improve the quality of images.
+> ⚠ The image quality may be lower on Qt5(PyQt5, PySide2) due to the use of svg. You can add the following [attribute](https://doc.qt.io/qt-5/qt.html#ApplicationAttribute-enum) to improve the quality of images.
 > ```Python
 > app.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps)
 > ```
@@ -102,7 +102,7 @@ Tomorrow Night Blue  : TOMORROW_NIGHT_BLUE
 Dark High Contrast   : DARK_HIGH_CONTRAST
 ```
 
-### Use third party themes
+### Use extension themes
 
 If you want to use a third party theme, you will need to download the theme file from the repository and load theme by using `load_stylesheet()`.  
 
@@ -116,9 +116,9 @@ One Dark Pro is one of the most used themes for VS Code.
    app.setStyleSheet(stylesheet)
    ```
 
-### Customize colors
+### Color customization
 
-You can customize color. The configuration method is the same as vscode's [workbench.colorCustomizations](https://code.visualstudio.com/api/extension-guides/color-theme#workbench-colors).  
+The configuration method is the same as [workbench.colorCustomizations](https://code.visualstudio.com/api/extension-guides/color-theme#workbench-colors) of VSCode.  
 About color code format, see [https://code.visualstudio.com/api/references/theme-color#color-formats](https://code.visualstudio.com/api/references/theme-color#color-formats).
 
 ```Python
@@ -131,7 +131,7 @@ The color id of VS Code can be used as it is.
 Which id corresponds to which widget style has not been documented yet.
 Please wait.
 
-### Create theme
+### Create new theme
 
 You can create your own theme. The configuration method is the same as theme extension of VS Code.
 The only properties to set are the theme type and colors.
@@ -152,7 +152,7 @@ Dictionary, json file(json with comment), and string formats are supported.
    ```
 - String(Json with comment text)
    ```Python
-   # You neet to use loads_stylesheet
+   # You need to use loads_stylesheet
    from qtvscodestyle import loads_stylesheet
    ...
    custom_theme = """
@@ -231,18 +231,21 @@ In order check details of the command, run:
 ```plaintext
 python -m qtvscodestyle.resource_builder --help
 ```
+> ⚠ Resource files and svg folders should always be in the same directory.
 
-## How to Use in Qt Designer
+> ⚠ Not support on PyQt6. PyQt6 removed Qt’s resource system.
+
+## How to use in Qt Designer
 
 1. Run the `qtvscodestyle.resource_builder` command and generate resources.
-1. Copy the stylesheet text from stylesheet.qss  in the generated folder.
+1. Copy the stylesheet text from `stylesheet.qss`.
 1. Paste the copied stylesheet into stylesheet property of the top-level widget.
-1. Register the resource.qrc in generated folder to the resource browser.
+1. Register the `resource.qrc` in generated folder to the resource browser. If you use Qt Creator, add `resource.qrc` and svg folder to your project.
 
-> ⚠ In PyQt6, support for Qt’s resource system has been removed. Therefore, if you want to use Qt Designer in PyQt6, you need to delete the stylesheet in the ui file and load the stylesheet using `load_stylesheet()`.
 
 ## License
 
+MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).
 All icons under `qtvscodestyle/google_fonts` are modified from [Material design icons](https://github.com/google/material-design-icons) (which uses an Apache 2.0 license), and are redistributed under the MIT license.  
 See [NOTICE.md](https://github.com/5yutan5/QtVSCodeStyle/blob/main/NOTICE.md).
 
