@@ -31,8 +31,6 @@ Not tested on linux.
 
 ## Installation Method
 
-PyPi is not yet. Please wait publish.
-
 - Last released version
    ```plaintext
    pip install qtvscodestyle
