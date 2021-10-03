@@ -1,0 +1,537 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "title": "The validation color id schema",
+    "description": "Make sure the settings are correct when creating a custom theme.",
+    "properties": {
+        "colors": {
+            "type": "object",
+            "title": "The colors schema",
+            "description": "Description of the role of color-id.",
+            "properties": {
+                "editor.background": {
+                    "type": "string",
+                    "title": "Application base background color",
+                    "description": "In VS Code, the editor occupies most of the window. So use this id as the base background."
+                },
+                "foreground": {
+                    "type": "string",
+                    "title": "Application base foreground color",
+                    "description": "Base color of text and part of icons."
+                },
+                "foreground.disabled": {
+                    "type": "string",
+                    "title": "Application base foreground color when widget are disabled",
+                    "description": "Base color of text and part of icons when widget are disabled.(Dedicated to qvscodestyle)"
+                },
+                "selection.background": {
+                    "type": "string",
+                    "title": "Background color of text selections",
+                    "description": "For input fields or text areas, does not apply to selections within the editor."
+                },
+                "contrastBorder": {
+                    "type": "string",
+                    "title": "Contrast border for high contrast mode",
+                    "description": "An extra border around elements to separate them from others for greater contrast."
+                },
+                "contrastActiveBorder": {
+                    "type": "string",
+                    "title": "Contrast border for high contrast mode when item are active.",
+                    "description": "An extra border around active elements to separate them from others for greater contrast."
+                },
+                "focusBorder": {
+                    "type": "string",
+                    "title": "Overall border color for focused elements.",
+                    "description": "This color is only used if not overridden by a component."
+                },
+                "editorGroup.border": {
+                    "type": "string",
+                    "title": "Color to separate multiple dock widgets from each other.",
+                    "description": "Used between QDockWidgets instead of QTextEdit."
+                },
+                "editorHoverWidget.background": {
+                    "type": "string",
+                    "title": "QToolTip background color",
+                    "description": "QToolTip background color."
+                },
+                "editorHoverWidget.foreground": {
+                    "type": "string",
+                    "title": "QToolTip foreground color",
+                    "description": "QToolTip foreground color."
+                },
+                "editorHoverWidget.border": {
+                    "type": "string",
+                    "title": "QToolTip border color",
+                    "description": "QToolTip border color"
+                },
+                "statusBar.background": {
+                    "type": "string",
+                    "title": "Standard Status Bar background color.",
+                    "description": "Standard Status Bar background color."
+                },
+                "statusBar.foreground": {
+                    "type": "string",
+                    "title": "Status Bar foreground color.",
+                    "description": "Status Bar foreground color."
+                },
+                "statusBar.border": {
+                    "type": "string",
+                    "title": "Status Bar top border color.",
+                    "description": "Status Bar top border color."
+                },
+                "statusBarItem.hoverBackground": {
+                    "type": "string",
+                    "title": "Status Bar item background color when hovering.",
+                    "description": "For QStatusBar child widgets."
+                },
+                "statusBarItem.hoverBackground.disabled": {
+                    "type": "string",
+                    "title": "Status Bar item background color when hovering when widget is disabled.",
+                    "description": "For QStatusBar child widgets.(Dedicated to qvscodestyle)"
+                },
+                "statusBarItem.activeBackground": {
+                    "type": "string",
+                    "title": "Status Bar item background color when clicking.",
+                    "description": "For QStatusBar child widgets."
+                },
+                "titleBar.activeBackground": {
+                    "type":"string",
+                    "title": "QMenuBar background when the window is active.",
+                    "description": "For QMenuBar, not title bar"
+                },
+                "titleBar.border":{
+                    "type": "string",
+                    "title": "QMenuBar border color.",
+                    "description": "For QMenuBar, not title bar"
+                },
+                "menubar.selectionForeground": {
+                    "type": "string",
+                    "title": "Foreground color of the selected menu item in the QMenuBar."
+                },
+                "menubar.selectionBackground": {
+                    "type": "string",
+                    "title": "Background color of the selected menu item in QMenuBar."
+                },
+                "menubar.selectionBorder": {
+                    "type": "string",
+                    "title": "Border color of the selected menu item in QMenuBar."
+                },
+                "debugToolBar.background": {
+                    "type": "string",
+                    "title": "QToolBar background color.",
+                    "description": "For QToolBar."
+                },
+                "debugToolBar.border": {
+                    "type": "string",
+                    "title": "QToolBar border color.",
+                    "description": "For QToolBar."
+                },
+                "menu.foreground": {
+                    "type": "string",
+                    "title": "Foreground color of QMenu items."
+                },
+                "menu.separatorBackground": {
+                    "type": "string",
+                    "title": "Color of a separator QMenu item.",
+                    "description": "The QToolBar separator too."
+                },
+                "menu.selectionForeground": {
+                    "type": "string",
+                    "title": "Foreground color of the selected QMenu items."
+                },
+                "menu.selectionBackground": {
+                    "type": "string",
+                    "title": "Background color of the selected QMenu items."
+                },
+                "menu.background": {
+                    "type": "string",
+                    "title": "Background color of QMenu items."
+                },
+                "menu.selectionBorder": {
+                    "type": "string",
+                    "title": "Border color of the selected QMenu items."
+                },
+                "menu.border": {
+                    "type": "string",
+                    "title": "Border color of QMenu."
+                },
+                "scrollbarSlider.activeBackground": {
+                    "type": "string",
+                    "title": "QScrollBar handle background color when clicked on.",
+                    "description": "For QScrollBar handle."
+                },
+                "scrollbarSlider.background": {
+                    "type": "string",
+                    "title": "QScrollBar handle background color.",
+                    "description": "For QScrollBar handle."
+                },
+                "scrollbarSlider.hoverBackground": {
+                    "type": "string",
+                    "title": "QScrollBar handle background color when hovering.",
+                    "description": "For QScrollBar handle."
+                },
+                "progressBar.background": {
+                    "type": "string",
+                    "title": "Background color of the QProgressBar shown for long running operations.",
+                    "description": "For QProgressBar chunk."
+                },
+                "progressBar.background.disabled": {
+                    "type": "string",
+                    "title": "Background color of the progress bar shown for long running operations when disabled",
+                    "description": "For QProgressBar chunk.(Dedicated to qvscodestyle)"
+                },
+                "button.background": {
+                    "type": "string",
+                    "title": "QPushButton background color.",
+                    "description": "For QPushButton."
+                },
+                "button.background.disabled": {
+                    "type": "string",
+                    "title": "QPushButton background color when disabled.",
+                    "description": "For QPushButton.(Dedicated to qvscodestyle)"
+                },
+                "button.foreground": {
+                    "type": "string",
+                    "title": "QPushButton foreground color.",
+                    "description": "For QPushButton."
+                },
+                "button.border": {
+                    "type": "string",
+                    "title": "QPushButton border color.",
+                    "description": "For QPushButton."
+                },
+                "button.hoverBackground": {
+                    "type": "string",
+                    "title": "QPushButton background color when hovering.",
+                    "description": "For QPushButton."
+                },
+                "button.secondaryBackground": {
+                    "type": "string",
+                    "title": "QPushButton secondary button background color.",
+                    "description": "For QPushButton when setting `secondary` property."
+                },
+                "button.secondaryBackground.disabled": {
+                    "type": "string",
+                    "title": "QPushButton secondary button background color when disabled.",
+                    "description": "For QPushButton when setting `secondary` property.(Dedicated to qvscodestyle)"
+                },
+                "button.secondaryForeground": {
+                    "type": "string",
+                    "title": "QPushButton secondary button foreground color.",
+                    "description": "For QPushButton when setting `secondary` property."
+                },
+                "button.secondaryHoverBackground": {
+                    "type": "string",
+                    "title": "QPushButton secondary button background color when hovering.",
+                    "description": "For QPushButton when setting `secondary` property."
+                },
+                "toolbar.hoverBackground": {
+                    "type": "string",
+                    "title": "Action button background when hovering over actions using the mouse",
+                    "description": "For QToolButton, QTabBar::close-button, QDockWidget::close-button, QDockWidget::float-button, QAbstractSpinBox::up-button and QAbstractSpinBox::down-button."
+                },
+                "toolbar.hoverOutline": {
+                    "type": "string",
+                    "title": "Action button outline when hovering over actions using the mouse",
+                    "description": "For QToolButton, QTabBar::close-button, QDockWidget::close-button, QDockWidget::float-button, QAbstractSpinBox::up-button and QAbstractSpinBox::down-button."
+                },
+                "toolbar.activeBackground": {
+                    "type": "string",
+                    "title": "Action button background when holding the mouse over actions",
+                    "description": "For QToolButton, QTabBar::close-button, QDockWidget::close-button, QDockWidget::float-button, QAbstractSpinBox::up-button and QAbstractSpinBox::down-button."
+                },
+                "dropdown.background": {
+                    "type": "string",
+                    "title": "QComboBox background",
+                    "description": "For QComboBox."
+                },
+                "dropdown.listBackground": {
+                    "type": "string",
+                    "title": "QComboBox list background",
+                    "description": "For QComboBox."
+                },
+                "dropdown.border": {
+                    "type": "string",
+                    "title": "QComboBox border",
+                    "description": "For QComboBox."
+                },
+                "dropdown.foreground": {
+                    "type": "string",
+                    "title": "QComboBox foreground",
+                    "description": "For QComboBox."
+                },
+                "tab.activeBackground": {
+                    "type": "string",
+                    "title": "Active QTabBar background color when active.",
+                    "description": "For QTabBar."
+                },
+                "tab.activeForeground": {
+                    "type": "string",
+                    "title": "Active Tab foreground color when active.",
+                    "description": "For QTabBar."
+                },
+                "tab.border": {
+                    "type": "string",
+                    "title": "Border to separate QTabBar tabs from each other.",
+                    "description": "For QTabBar."
+                },
+                "tab.hoverBackground": {
+                    "type": "string",
+                    "title": "QTabBar item background color when hovering",
+                    "description": "For QTabBar."
+                },
+                "tab.inactiveBackground": {
+                    "type": "string",
+                    "title": "Inactive QTabBar background color.",
+                    "description": "For QTabBar."
+                },
+                "editor.foreground": {
+                    "type": "string",
+                    "title": "Text area default foreground color.",
+                    "description": "For QTextEdit and QPlainTextEdit."
+                },
+                "editor.selectionBackground": {
+                    "type": "string",
+                    "title": "Color of the text area selection.",
+                    "description": "For QTextEdit and QPlainTextEdit."
+                },
+                "editor.selectionForeground": {
+                    "type": "string",
+                    "title": "Color of the selected text for high contrast.",
+                    "description": "For QTextEdit and QPlainTextEdit."
+                },
+                "editor.inactiveSelectionBackground": {
+                    "type": "string",
+                    "title": " Color of the selection in an inactive text area.",
+                    "description": "For QTextEdit and QPlainTextEdit."
+                },
+                "sideBar.background": {
+                    "type": "string",
+                    "title": "Item view alternate background color.",
+                    "description": "For QAbstractItemView."
+                },
+                "list.activeSelectionBackground": {
+                    "type": "string",
+                    "title": "List/Tree background color for the selected item when the list/tree is active."
+                },
+                "list.activeSelectionForeground": {
+                    "type": "string",
+                    "title": "List/Tree foreground color for the selected item when the list/tree is active."
+                },
+                "list.hoverBackground": {
+                    "type": "string",
+                    "title": "List/Tree background when hovering over items using the mouse."
+                },
+                "list.hoverForeground": {
+                    "type": "string",
+                    "title": "List/Tree foreground when hovering over items using the mouse."
+                },
+                "list.inactiveSelectionBackground": {
+                    "type": "string",
+                    "title": "List/Tree background color for the selected item when the list/tree is inactive."
+                },
+                "list.inactiveSelectionForeground": {
+                    "type": "string",
+                    "title": "List/Tree foreground color for the selected item when the list/tree is inactive."
+                },
+                "checkbox.background": {
+                    "type": "string",
+                    "title": "Background color of checkbox indicator.",
+                    "description": "For QCheckBox, QGroupBox and QTreeView of indicator."
+                },
+                "checkbox.foreground": {
+                    "type": "string",
+                    "title": "Foreground color of checkbox indicator.",
+                    "description": "For QCheckBox, QGroupBox and QTreeView of indicator."
+                },
+                "checkbox.foreground.disabled": {
+                    "type": "string",
+                    "title": "Foreground color of checkbox indicator when disabled.",
+                    "description": "For QCheckBox, QGroupBox and QTreeView of indicator.(Dedicated to qvscodestyle)"
+                },
+                "checkbox.border": {
+                    "type": "string",
+                    "title": "Border color of checkbox indicator.",
+                    "description": "For QCheckBox, QGroupBox and QTreeView of indicator."
+                },
+                "input.background": {
+                    "type": "string",
+                    "title": "Input box background.",
+                    "description": "For QLineEdit and QAbstractSpinBox."
+                },
+                "input.border": {
+                    "type": "string",
+                    "title": "Input box border.",
+                    "description": "For QLineEdit and QAbstractSpinBox."
+                },
+                "input.foreground": {
+                    "type": "string",
+                    "title": "Input box foreground.",
+                    "description": "For QLineEdit and QAbstractSpinBox."
+                },
+                "activityBar.background": {
+                    "type": "string",
+                    "title": "The activityBar.background schema",
+                    "description": "An explanation about the purpose of this instance."
+                },
+                "activityBar.border": {
+                    "type": "string",
+                    "title": "Activity Bar background color.",
+                    "description": "For QToolBar when setting `activity` property."
+                },
+                "activityBar.foreground": {
+                    "type": "string",
+                    "title": "Activity Bar foreground color (for example used for the icons).",
+                    "description": "For QToolBar when setting `activity` property."
+                },
+                "activityBar.inactiveForeground": {
+                    "type": "string",
+                    "title": "Activity Bar item foreground color when it is inactive.",
+                    "description": "todo."
+                },
+                "activityBar.activeBorder": {
+                    "type": "string",
+                    "title": "Activity Bar active indicator border color.",
+                    "description": "For QToolBar when setting `activity` property."
+                },
+                "activityBar.activeBackground": {
+                    "type": "string",
+                    "title": "The activityBar.activeBackground schema",
+                    "description": "For QToolBar when setting `activity` property."
+                },
+                "activityBar.activeFocusBorder": {
+                    "type": "string",
+                    "title": "The activityBar.activeFocusBorder schema",
+                    "description": "For QToolBar when setting `activity` property."
+                },
+                "inputValidation.errorBorder": {
+                    "type": "string",
+                    "title": "Input validation border color for error severity.",
+                    "description": "For QLineEdit when setting `error` property."
+                },
+                "inputValidation.errorBorder.disabled": {
+                    "type": "string",
+                    "title": "Input validation border color for error severity when disabled.",
+                    "description": "For QLineEdit when setting `error` property.(Dedicated to qvscodestyle)"
+                },
+                "inputValidation.warningBorder": {
+                    "type": "string",
+                    "title": "Input validation border color for warning severity.",
+                    "description": "For QLineEdit when setting `error` property."
+                },
+                "inputValidation.warningBorder.disabled": {
+                    "type": "string",
+                    "title": "Input validation border color for warning severity when disabled.",
+                    "description": "For QLineEdit when setting `error` property.(Dedicated to qvscodestyle)"
+                },
+                "icon.foreground": {
+                    "type": "string",
+                    "title": "The default color for icons.",
+                    "description": "For QIcon."
+                },
+                "icon.foreground.disabled": {
+                    "type": "string",
+                    "title": "The default color for icons when disabled.",
+                    "description": "For QIcon."
+                }
+            },
+            "additionalProperties": true,
+            "required": [
+                "editor.background",
+                "foreground",
+                "foreground.disabled",
+                "selection.background",
+                "contrastBorder",
+                "contrastActiveBorder",
+                "focusBorder",
+                "editorGroup.border",
+                "editorHoverWidget.background",
+                "editorHoverWidget.foreground",
+                "editorHoverWidget.border",
+                "statusBar.background",
+                "statusBar.foreground",
+                "statusBar.border",
+                "statusBarItem.hoverBackground",
+                "statusBarItem.hoverBackground.disabled",
+                "statusBarItem.activeBackground",
+                "titleBar.activeBackground",
+                "titleBar.border",
+                "menubar.selectionForeground",
+                "menubar.selectionBackground",
+                "menubar.selectionBorder",
+                "debugToolBar.background",
+                "debugToolBar.border",
+                "menu.foreground",
+                "menu.separatorBackground",
+                "menu.selectionForeground",
+                "menu.selectionBackground",
+                "menu.background",
+                "menu.selectionBorder",
+                "menu.border",
+                "scrollbarSlider.activeBackground",
+                "scrollbarSlider.background",
+                "scrollbarSlider.hoverBackground",
+                "progressBar.background",
+                "progressBar.background.disabled",
+                "button.background",
+                "button.background.disabled",
+                "button.foreground",
+                "button.border",
+                "button.hoverBackground",
+                "button.secondaryBackground",
+                "button.secondaryBackground.disabled",
+                "button.secondaryForeground",
+                "button.secondaryHoverBackground",
+                "toolbar.hoverBackground",
+                "toolbar.hoverOutline",
+                "toolbar.activeBackground",
+                "dropdown.background",
+                "dropdown.listBackground",
+                "dropdown.border",
+                "dropdown.foreground",
+                "tab.activeBackground",
+                "tab.activeForeground",
+                "tab.border",
+                "tab.hoverBackground",
+                "tab.inactiveBackground",
+                "editor.foreground",
+                "editor.selectionBackground",
+                "editor.selectionForeground",
+                "editor.inactiveSelectionBackground",
+                "sideBar.background",
+                "list.activeSelectionBackground",
+                "list.activeSelectionForeground",
+                "list.hoverBackground",
+                "list.hoverForeground",
+                "list.inactiveSelectionBackground",
+                "list.inactiveSelectionForeground",
+                "checkbox.background",
+                "checkbox.foreground",
+                "checkbox.foreground.disabled",
+                "checkbox.border",
+                "input.background",
+                "input.border",
+                "input.foreground",
+                "activityBar.background",
+                "activityBar.border",
+                "activityBar.foreground",
+                "activityBar.inactiveForeground",
+                "activityBar.activeBorder",
+                "activityBar.activeBackground",
+                "activityBar.activeFocusBorder",
+                "inputValidation.errorBorder",
+                "inputValidation.errorBorder.disabled",
+                "inputValidation.warningBorder",
+                "inputValidation.warningBorder.disabled",
+                "icon.foreground",
+                "icon.foreground.disabled"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "type",
+        "colors"
+    ],
+    "additionalProperties": true
+}
