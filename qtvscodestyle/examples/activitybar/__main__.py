@@ -1,10 +1,9 @@
 import sys
 
-import qtvscodestyle
+import qtvscodestyle as qtvsc
 from qtvscodestyle.qtpy.QtCore import Qt
 from qtvscodestyle.qtpy.QtGui import QAction, QActionGroup
 from qtvscodestyle.qtpy.QtWidgets import QApplication, QLabel, QMainWindow, QStackedWidget, QToolBar
-from qtvscodestyle.icon_manager import get_icon
 
 app = QApplication(sys.argv)
 # Fix the svg icon display becoming low quality in Qt5.
@@ -13,9 +12,13 @@ if hasattr(Qt.ApplicationAttribute, "AA_UseHighDpiPixmaps"):
     app.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps)  # type: ignore
 main_win = QMainWindow()
 
+# Create icon
+home_icon = qtvsc.theme_icon(qtvsc.FaSolid.FONT, "activityBar.foreground")
+favorite_icon = qtvsc.theme_icon(qtvsc.FaSolid.BOLD, "activityBar.foreground")
+
 # Create action
-action_move_page_1 = QAction(get_icon("home"), "Move Page 1")
-action_move_page_2 = QAction(get_icon("favorite_border"), "Move Page2")
+action_move_page_1 = QAction(home_icon, "Move Page 1")
+action_move_page_2 = QAction(favorite_icon, "Move Page2")
 action_move_page_1.setCheckable(True)
 action_move_page_2.setCheckable(True)
 action_move_page_1.setChecked(True)
@@ -48,6 +51,6 @@ action_move_page_2.triggered.connect(lambda: stack_widget.setCurrentIndex(1))
 main_win.addToolBar(Qt.ToolBarArea.LeftToolBarArea, activitybar)
 main_win.setCentralWidget(stack_widget)
 
-app.setStyleSheet(qtvscodestyle.load_stylesheet())
+app.setStyleSheet(qtvsc.load_stylesheet())
 main_win.show()
 app.exec()

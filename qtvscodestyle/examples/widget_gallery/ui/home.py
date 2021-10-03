@@ -1,4 +1,5 @@
 from typing import Any
+from qtvscodestyle.const import FaRegular
 
 from qtvscodestyle.qtpy.QtCore import QAbstractTableModel, QModelIndex, Qt
 from qtvscodestyle.qtpy.QtGui import QTextOption
@@ -30,12 +31,16 @@ from qtvscodestyle.qtpy.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-from qtvscodestyle.icon_manager import get_icon
+import qtvscodestyle as qtvsc
 
 
 class _Group1(QGroupBox):
     def __init__(self) -> None:
         super().__init__("Group 1")
+
+        # VSCode icons
+        favorite_icon = qtvsc.theme_icon(FaRegular.STAR)
+
         # Widgets
         group_push = QGroupBox("Push Button")
         group_tool = QGroupBox("Tool Button")
@@ -44,25 +49,22 @@ class _Group1(QGroupBox):
 
         push_button_normal = QPushButton(text="NORMAL")
         push_button_toggled = QPushButton(text="TOGGLED")
-
         push_button_secondary_normal = QPushButton(text="NORMAL")
         push_button_secondary_toggled = QPushButton(text="TOGGLED")
-
         tool_button_normal, tool_button_toggled, tool_button_text = QToolButton(), QToolButton(), QToolButton()
-
         radio_button_normal_1, radio_button_normal_2 = QRadioButton("Normal 1"), QRadioButton("Normal 2")
         checkbox_normal, checkbox_tristate = QCheckBox("Normal"), QCheckBox("Tristate")
 
-        # Setup ui
+        # Setup widgets
         self.setCheckable(True)
         push_button_toggled.setCheckable(True)
         push_button_toggled.setChecked(True)
         push_button_secondary_toggled.setCheckable(True)
         push_button_secondary_toggled.setChecked(True)
 
-        tool_button_normal.setIcon(get_icon("favorite_border"))
-        tool_button_toggled.setIcon(get_icon("favorite_border"))
-        tool_button_text.setIcon(get_icon("favorite_border"))
+        tool_button_normal.setIcon(favorite_icon)
+        tool_button_toggled.setIcon(favorite_icon)
+        tool_button_text.setIcon(favorite_icon)
         tool_button_text.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
         tool_button_text.setText("Text")
         tool_button_toggled.setCheckable(True)
@@ -234,7 +236,7 @@ class _Group3(QGroupBox):
         tab_widget.setTabsClosable(True)
         tab_widget.setMovable(True)
         tab_text_edit.append("<b>QtVSCodeStyle</b>")
-        tab_text_edit.append("DarkTheme for QtWidgets application(Qt for python).")
+        tab_text_edit.append("VS Code style for QtWidgets application(Qt for python).")
         tab_text_edit.append("This project is licensed under the MIT license.")
         tab_text_edit.setWordWrapMode(QTextOption.WrapMode.NoWrap)
 
