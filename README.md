@@ -46,7 +46,7 @@ PyPi is not yet. Please wait publish.
 
 ### Use default theme
 
-You can use VSCode's default theme by using `Theme` enum.
+You can use VS Code's default theme by using `Theme` enum.
 
 ```Python
 import sys
@@ -143,7 +143,9 @@ Same as [VS Code's theme color document](https://code.visualstudio.com/api/refer
 
 You can also use various icon fonts and svg as QIcon.
 
-QtAwesome identifies icons by symbolic and  icon name.
+[![VS Code style icon](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/qicon_for_vscode_style.gif)](https://github.com/5yutan5/QtVSCodeStyle/blob/main/images/qicon_for_vscode_style.gif)
+
+QtVSCodeStyle identifies icons by symbolic and  icon name.
 The following symbolic are currently available to use:
 
 - [Font Awesome Free(5.15.4)](https://fontawesome.com/) - Font Icon
@@ -320,3 +322,5 @@ This package has been created with reference to the following repositories.
 - [BreezeStyleSheets](https://github.com/Alexhuszagh/BreezeStyleSheets)
 - [qt-material](https://github.com/UN-GCPDS/qt-material)
 - [vscode](https://github.com/microsoft/vscode)
+- [QtAwesome](https://github.com/spyder-ide/qtawesome)
+- [Napari](https://github.com/napari/napari)
