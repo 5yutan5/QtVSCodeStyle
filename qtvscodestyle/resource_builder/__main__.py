@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Union
 from xml.etree import ElementTree as ET
 
-import qtvscodestyle
 from qtvscodestyle.base import Theme, load_stylesheet_for_designer
 
 
@@ -17,7 +16,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-t",
         "--theme",
-        help=f"""Theme symbol. Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
+        help=f"""Theme symbol. Available symbols: {[theme.name.lower() for theme in Theme]}
         """,
         default=Theme.DARK_VS.name.lower(),
     )
@@ -28,17 +27,13 @@ def _parse_args() -> argparse.Namespace:
         default=str(Path.cwd()),
     )
     parser.add_argument(
-        "-c",
-        "--custom-colors-path",
-        help="Path of the json file where the custom colors are saved.",
+        "-c", "--custom-colors-path", help="Path of the json file where the custom colors are saved.",
     )
     args = parser.parse_args()
     return args
 
 
-def _build_resources(
-    save_dir_path: Union[Path, str], custom_colors: dict[str, str], theme: qtvscodestyle.Theme
-) -> None:
+def _build_resources(save_dir_path: Union[Path, str], custom_colors: dict[str, str], theme: Theme) -> None:
     save_dir_path = Path(save_dir_path)
     try:
         save_dir_path.mkdir()
@@ -78,15 +73,13 @@ if __name__ == "__main__":
     output_dir_path = Path(args.path) / "qtvscodestyle_resources"
     custom_colors_dir_path = args.custom_colors_path
 
-    for default_theme in qtvscodestyle.Theme:
+    for default_theme in Theme:
         if default_theme.name.lower() == theme_symbol:
             theme = default_theme
             break
     else:
         raise Exception(
-            f"""
-            Invalid symbol in theme option. Available symbols: {[theme.name.lower() for theme in qtvscodestyle.Theme]}
-            """
+            f"Invalid symbol in theme option. Available symbols: {[theme.name.lower() for theme in Theme]}"
         )
 
     if custom_colors_dir_path is not None:
