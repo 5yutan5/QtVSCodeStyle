@@ -16,6 +16,8 @@ The default and extension themes of VS Code can be used.
 |[Dark (Visual Studio)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)|[Light (Visual Studio)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)|[Dark High Contrast](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)|
 | :--: | :--: | :--: |
 |[![widget_gallery_dark_theme](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)|[![widget_gallery_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)|[![widget_gallery_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)|
+|[widget_gallery_night_owl_theme](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)|[One Dark Pro](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)|[Ayu Light](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)|
+|[![Night Owl](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)|[![widget_gallery_one_dark_pro_theme](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)|[![widget_gallery_ayu_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)
 
 etc...
 
@@ -51,15 +53,15 @@ import sys
 
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton
 
-from qtvscodestyle import Theme, load_stylesheet
+import qtvscodestyle as qtvsc
 
 app = QApplication(sys.argv)
 main_win = QMainWindow()
 push_button = QPushButton("QtVSCodeStyle!!")
 main_win.setCentralWidget(push_button)
 
-stylesheet = load_stylesheet(Theme.DARK_VS)
-# stylesheet = load_stylesheet(Theme.LIGHT_VS)
+stylesheet = qtvsc.load_stylesheet(qtvsc.Theme.DARK_VS)
+# stylesheet = load_stylesheet(qtvsc.Theme.LIGHT_VS)
 app.setStyleSheet(stylesheet)
 
 main_win.show()
@@ -78,15 +80,15 @@ app.exec()
 To check available themes, run:
 
 ```Python
-from qtvscodestyle import list_themes
+import qtvscodestyle qtvsc
 
 # list theme name and symbol
-list_themes()
+qtvsc.list_themes()
 ```
 
 ```plaintext
-Theme name:          : Symbol
-_____________________________
+Theme name             Symbol
+___________            ______
 
 Light (Visual Studio): LIGHT_VS
 Quiet Light          : QUIET_LIGHT
@@ -127,9 +129,60 @@ custom_colors = {"button.foreground": "#ff0000"}
 stylesheet = load_stylesheet(Theme.DARK_VS, custom_colors)
 ```
 
-The color id of VS Code can be used as it is.
-Which id corresponds to which widget style has not been documented yet.
-Please wait.
+To check available themes, run:
+
+```Python
+import qtvscodestyle as qtvsc
+
+qtvsc.list_color_id()
+```
+
+Same as [VS Code's theme color document](https://code.visualstudio.com/api/references/theme-color).
+
+### SVG and Font QIcon for VS Code style
+
+You can also use various icon fonts and svg as QIcon.
+
+QtAwesome identifies icons by symbolic and  icon name.
+The following symbolic are currently available to use:
+
+- [Font Awesome Free(5.15.4)](https://fontawesome.com/) - Font Icon
+   - `FaRegular`: Regular style
+   - `FaSolid` : Solid style
+   - `FaBrands`: Brands style
+- [vscode-codicons](https://github.com/microsoft/vscode-codicons)
+   - `Vsc`: VS Code style - SVG Icon
+
+You can use icon browser that displays all the available icons.
+
+```Plaintext
+python -m qtvscodestyle.examples.icon_browser
+```
+
+Two functions, `theme_icon()` and `icon()` are available.
+`theme_icon()` create QIcon will automatically switch the color based on the set color-id when you call `load_stylesheet(Another Theme)`.
+
+```Python
+star_icon = qtvsc.theme_icon(qtvsc.Vsc.STAR_FULL, "icon.foreground")
+button = QToolButton()
+button.setIcon(star_icon)
+
+# star_icon switch to the MONOKAI's "icon.foreground" color.
+qtvsc.load_stylesheet(qtvsc.Theme.MONOKAI)
+```
+
+
+`icon()` create QIcon with static color.
+```Python
+# Set red
+star_icon = qtvsc.icon(qtvsc.Vsc.STAR_FULL, "#FF0000")
+button = QToolButton()
+button.setIcon(star_icon)
+
+# Keep red.
+qtvsc.load_stylesheet(qtvsc.Theme.MONOKAI)
+```
+
 
 ### Create new theme
 
@@ -174,6 +227,10 @@ Dictionary, json file(json with comment), and string formats are supported.
    # custom_theme_path = pathlib.Path("custom_theme.json")
    stylesheet = load_stylesheet(custom_theme_path)
    ```
+
+If you customize using json files, you can use json schema.
+Copy json schema from `qvscodestyle/validate_colors.json`
+Using schema example for VS Code: https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings
 
 ## Check common widgets
 
@@ -246,8 +303,14 @@ python -m qtvscodestyle.resource_builder --help
 ## License
 
 MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).
-All icons under `qtvscodestyle/google_fonts` are modified from [Material design icons](https://github.com/google/material-design-icons) (which uses an Apache 2.0 license), and are redistributed under the MIT license.  
-See [NOTICE.md](https://github.com/5yutan5/QtVSCodeStyle/blob/main/NOTICE.md).
+QtVSCodeStyle incorporates image assets from external sources.
+The icons for the QtVSCodeStyle are derived from:
+
+- Font Awesome Free 5.15.4 (Font Awesome; SIL OFL 1.1)
+- Material design icons (Google; Apache License Version 2.0)
+- vscode-codicons (Microsoft Corporation; CC-BY-SA-4.0 License)
+
+See [NOTICE.md](https://github.com/5yutan5/QtVSCodeStyle/blob/main/NOTICE.md) for full license information.
 
 ## Acknowledgements
 
