@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "QtVSCodeStyle"
-version = "0.1.5"
+version = "0.1.0"
 description = "VS Code Style for PySide, PyQt."
 authors = ["Yunosuke Ohsugi <63651161+5yutan5@users.noreply.github.com>"]
 license = "MIT"
@@ -42,7 +42,6 @@ build-backend = "poetry.core.masonry.api"
 max-line-length = 119
 max-complexity = 10
 extend-ignore = "E203"
-per-file-ignores = ["qtvscodestyle/vscode/color_registry.py:F841"]
 
 [tool.black]
 line-length = 119
