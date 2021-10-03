@@ -1,6 +1,6 @@
 import sys
 
-import qtvscodestyle
+import qtvscodestyle as qtvsc
 from qtvscodestyle.examples.widget_gallery.ui.main_ui import UI
 from qtvscodestyle.qtpy.QtCore import Qt, Slot
 from qtvscodestyle.qtpy.QtWidgets import QApplication, QColorDialog, QFileDialog, QMainWindow
@@ -50,18 +50,19 @@ class WidgetGallery(QMainWindow):
     @Slot()
     def _change_theme(self) -> None:
         theme_name = self.sender().text()
-        for theme in qtvscodestyle.Theme:
+        for theme in qtvsc.Theme:
             if theme.value["name"] == theme_name:
-                QApplication.instance().setStyleSheet(qtvscodestyle.load_stylesheet(theme))
+                QApplication.instance().setStyleSheet(qtvsc.load_stylesheet(theme))
 
 
-app = QApplication(sys.argv)
-# Fix the svg icon display becoming low quality in Qt5.
-# PyQt6 doesn't have attribute AA_UseHighDpiPixmaps.
-if hasattr(Qt.ApplicationAttribute, "AA_UseHighDpiPixmaps"):
-    app.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps)  # type: ignore
-win = WidgetGallery()
-win.menuBar().setNativeMenuBar(False)
-app.setStyleSheet(qtvscodestyle.load_stylesheet(qtvscodestyle.Theme.DARK_VS))
-win.show()
-app.exec()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    # Fix the svg icon display becoming low quality in Qt5.
+    # PyQt6 doesn't have attribute AA_UseHighDpiPixmaps.
+    if hasattr(Qt.ApplicationAttribute, "AA_UseHighDpiPixmaps"):
+        app.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps)  # type: ignore
+    win = WidgetGallery()
+    win.menuBar().setNativeMenuBar(False)
+    app.setStyleSheet(qtvsc.load_stylesheet(qtvsc.Theme.DARK_VS))
+    win.show()
+    app.exec()

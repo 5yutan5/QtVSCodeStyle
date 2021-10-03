@@ -1,6 +1,6 @@
 import sys
 
-import qtvscodestyle
+import qtvscodestyle as qtvsc
 from qtvscodestyle.qtpy.QtWidgets import QApplication, QDialog, QGroupBox, QHBoxLayout, QPushButton, QVBoxLayout
 
 app = QApplication(sys.argv)
@@ -42,6 +42,6 @@ h_layout_main.addWidget(group_contained)
 
 main_win.setMinimumSize(300, 200)
 
-app.setStyleSheet(qtvscodestyle.load_stylesheet())
+app.setStyleSheet(qtvsc.load_stylesheet())
 main_win.show()
 app.exec()

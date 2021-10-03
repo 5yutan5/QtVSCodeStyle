@@ -1,6 +1,6 @@
 import sys
 
-import qtvscodestyle
+import qtvscodestyle as qtvsc
 from qtvscodestyle.qtpy.QtWidgets import QApplication, QDialog, QLineEdit, QVBoxLayout
 
 app = QApplication(sys.argv)
@@ -24,6 +24,6 @@ v_layout.addWidget(lineedit_error)
 
 main_win.setMinimumSize(300, 200)
 
-app.setStyleSheet(qtvscodestyle.load_stylesheet())
+app.setStyleSheet(qtvsc.load_stylesheet())
 main_win.show()
 app.exec()

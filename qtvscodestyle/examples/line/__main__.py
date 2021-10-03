@@ -1,6 +1,6 @@
 import sys
 
-import qtvscodestyle
+import qtvscodestyle as qtvsc
 from qtvscodestyle.qtpy.QtWidgets import QApplication, QDialog, QFrame, QGridLayout, QLabel
 
 app = QApplication(sys.argv)
@@ -24,6 +24,6 @@ g_layout.addWidget(area3, 0, 2, 3, 1)
 
 main_win.setMinimumSize(300, 200)
 
-app.setStyleSheet(qtvscodestyle.load_stylesheet())
+app.setStyleSheet(qtvsc.load_stylesheet())
 main_win.show()
 app.exec()
