@@ -11,7 +11,7 @@ from typing import Optional, Union
 
 from typing_extensions import Literal
 
-from qtvscodestyle.build import build_stylesheet
+from qtvscodestyle.stylesheet.build import build_stylesheet
 from qtvscodestyle.util import multireplace
 from qtvscodestyle.vscode.color import Color
 from qtvscodestyle.vscode.color_registry import setup_default_color_registry
@@ -24,6 +24,8 @@ _RESOURCES_BASE_DIR = Path.home() / ".q_vscode_style" / "resources"
 # Clean up project dir
 shutil.rmtree(str(_RESOURCES_BASE_DIR), ignore_errors=True)
 _RESOURCES_BASE_DIR.mkdir(parents=True, exist_ok=True)
+
+global_current_colors = {}
 
 
 # In VSCode's default theme file, theme type is not set. Extension themes is no need.
@@ -44,7 +46,7 @@ class Theme(Enum):
         "file_name": "tomorrow-night-blue-color-theme.json",
         "type": "dark",
     }
-    DARK_HIGH_CONTRAST = {"name": "Dark High Contrast", "file_name": "hc_black.json", "type": "dark"}
+    DARK_HIGH_CONTRAST = {"name": "Dark High Contrast", "file_name": "hc_black.json", "type": "hc"}
 
 
 def _loads_jsonc(json_text: str) -> dict:
@@ -85,8 +87,8 @@ def _merge_colors_to_default(
     color_registry = ColorRegistry()
     for id, color in colors.items():
         color_registry.register_color(id, color, type)
-    colors_generated = color_registry.get_colors(type)
-    return {f"${id}".replace(".", "_"): color for id, color in colors_generated.items()}
+    colors_merged = color_registry.get_colors(type)
+    return colors_merged
 
 
 def _load_stylesheet(
@@ -97,12 +99,11 @@ def _load_stylesheet(
 ) -> str:
     if type(theme) is Theme:
         theme_file_name = theme.value["file_name"]
-        json_text = resources.read_text("qtvscodestyle.theme", theme_file_name)
+        json_text = resources.read_text("qtvscodestyle.vscode.theme", theme_file_name)
         theme_property = _loads_jsonc(json_text)
         theme_property["type"] = theme.value["type"]
     elif type(theme) is str or type(theme) is Path:
-        with Path(theme).open() as f:
-            json_text = f.read()
+        json_text = Path(theme).read_text()
         theme_property = _loads_jsonc(json_text)
     elif type(theme) is dict:
         theme_property = theme
@@ -111,6 +112,20 @@ def _load_stylesheet(
 
     colors = {**theme_property["colors"], **custom_colors}
     colors = _merge_colors_to_default(colors, theme_property["type"])
+    global_current_colors.clear()
+    global_current_colors.update(colors)
+
+    try:
+        from qtvscodestyle.q_icon import global_icon_engine_map
+
+        for id, engines in global_icon_engine_map.items():
+            for engine in engines:
+                color = colors[id]
+                engine.change_color(Color.white() if color is None else color)
+    except ImportError as e:
+        print("-------------------------------------------------------------")
+        print(e)
+        print("-------------------------------------------------------------")
     return build_stylesheet(colors, theme_property["type"], output_svg_path, is_designer)
 
 
@@ -131,14 +146,26 @@ def loads_stylesheet(theme_text: str, custom_colors: dict[str, str] = {}) -> str
     return load_stylesheet(theme_property, custom_colors)
 
 
-def list_themes():
-    themes = {theme.value["name"]: theme.name for theme in Theme}
+def _beautify_printing_dict(di: dict, key_title: str, value_title: str) -> None:
     # Align with a colon
     max_len = 0
-    for name in themes.keys():
-        max_len = max(len(name), max_len)
-    print("Theme name:".ljust(max_len) + ": Symbol")
-    print("___________".ljust(max_len, " ") + "  " + "______")
+    for key in di.keys():
+        max_len = max(len(key), max_len)
+    print(f"{key_title} ".ljust(max_len) + f"  {value_title}")
+    print(("_" * len(key_title) + "_").ljust(max_len, " ") + "  " + ("_" * len(value_title) + "_"))
     print()
-    for name, symbol in themes.items():
-        print(name.ljust(max_len) + f": {symbol}")
+    for key, value in di.items():
+        print(key.ljust(max_len) + f": {value}")
+
+
+def list_themes():
+    themes = {theme.value["name"]: theme.name for theme in Theme}
+    _beautify_printing_dict(themes, "Theme", "Symbol")
+
+
+def list_color_id():
+    json_text = resources.read_text("qtvscodestyle", "validate_colors.json")
+    properties = json.loads(json_text)
+    colors = properties["properties"]["colors"]["properties"]
+    color_descriptions = {id: property["title"] for id, property in colors.items()}
+    _beautify_printing_dict(color_descriptions, "Color ID", "Description")
