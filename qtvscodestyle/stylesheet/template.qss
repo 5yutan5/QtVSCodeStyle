@@ -63,7 +63,7 @@ QWidget {
     dialog-discard-icon: $url{"icon": "discard.svg", "id": "icon_foreground", "rotate": "0"};
     dialog-close-icon: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
     dialog-open-icon: $url{"icon": "folder-opened.svg", "id": "icon_foreground", "rotate": "0"};
-    dialog-help-icon: $url{"icon": "info.svg", "id": "icon_foreground", "rotate": "0"};
+    dialog-help-icon: $url{"icon": "help.svg", "id": "icon_foreground", "rotate": "0"};
 
     filedialog-parent-directory-icon: $url{"icon": "arrow-up.svg", "id": "icon_foreground", "rotate": "0"};
     filedialog-new-directory-icon: $url{"icon": "new-folder.svg", "id": "icon_foreground", "rotate": "0"};
@@ -442,8 +442,8 @@ QToolButton::menu-button:checked:hover {
 }
 QToolButton::menu-indicator,
 QToolButton::menu-arrow {
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
     image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QToolButton::menu-indicator:disabled,
@@ -800,9 +800,13 @@ QTreeView::item {
 QListView::item:selected {
     border-color: $focusBorder;
 }
+QTreeView::branch {
+    padding: 2px;
+}
 QTreeView::branch:selected,
 QTreeView::branch:selected:!active {
     border-width: 1px;
+    padding: 1px;
 }
 /* dark or light */
 QListView::item:selected:!active,
@@ -1003,14 +1007,14 @@ QHeaderView::section:vertical:on:disabled {
 QHeaderView::section::last, QHeaderView::section::only-one {
     margin: 0;
 }
-QHeaderView::down-arrow {
+QHeaderView::down-arrow:horizontal {
     width: 20px;
     image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
 }
 QHeaderView::down-arrow:disabled {
     image: $url{"icon": "chevron-down.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
-QHeaderView::up-arrow {
+QHeaderView::up-arrow:horizontal {
     width: 20px;
     image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
 }
