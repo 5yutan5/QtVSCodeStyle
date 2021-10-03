@@ -1,9 +1,11 @@
-# ===============================================================================================================
+# ==============================================================================================================
 # QtVSCodeStyle.
 #
-#  :author: Microsoft Corporation
-#  :editor: Yunosuke Ohsugi
-#  :license: MIT, see LICENSE.txt file
+#  Copyright (c) 2015- Microsoft Corporation
+#  Copyright (c) 2021- Yunosuke Ohsugi
+#
+#  Distributed under the terms of the MIT License.
+#  See https://github.com/microsoft/vscode/blob/main/LICENSE.txt
 #
 # Original codes:
 #   https://github.com/microsoft/vscode/blob/main/src/vs/platform/theme/common/colorRegistry.ts
@@ -11,10 +13,8 @@
 #   https://github.com/microsoft/vscode/blob/main/src/vs/editor/common/view/editorColorRegistry.ts
 #   https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/comments/browser/commentGlyphWidget.ts
 #   https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/preferences/browser/settingsWidgets.ts
-# ---------------------------------------------------------------------
 #
-# Copyright (c) <2015-> <Microsoft Corporation>
-# Copyright (c) <2021-> <Yunosuke Ohsugi>
+# (see NOTICE.md in the QtVSCodeStyle root directory for details)
 # ===============================================================================================================
 
 from qtvscodestyle.vscode.color import RGBA, Color
@@ -774,8 +774,8 @@ def setup_default_color_registry() -> None:
     register_color(
         "button.background.active",
         {
-            "dark": lighten(buttonBackground, 0.7),
-            "light": darken(buttonBackground, 0.4),
+            "dark": lighten(buttonBackground, 0.5),
+            "light": lighten(buttonBackground, 0.4),
             "hc": buttonBackground,
         },
     )
