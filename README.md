@@ -114,7 +114,7 @@ One Dark Pro is one of the most used themes for VS Code.
 1. Then load the stylesheet using the saved file.
    ```Python
    theme_file = r"OneDark-Pro.json"
-   stylesheet = load_stylesheet(theme_file)
+   stylesheet = qtvsc.load_stylesheet(theme_file)
    app.setStyleSheet(stylesheet)
    ```
 
@@ -126,7 +126,7 @@ About color code format, see [https://code.visualstudio.com/api/references/theme
 ```Python
 # Set the button text color to red.
 custom_colors = {"button.foreground": "#ff0000"}
-stylesheet = load_stylesheet(Theme.DARK_VS, custom_colors)
+stylesheet = qtvsc.load_stylesheet(qtvsc.Theme.DARK_VS, custom_colors)
 ```
 
 To check available themes, run:
@@ -203,7 +203,7 @@ Dictionary, json file(json with comment), and string formats are supported.
            "selection.background": "#404040",
        },
    }
-   stylesheet = load_stylesheet(custom_theme)
+   stylesheet = qtvsc.load_stylesheet(custom_theme)
    ```
 - String(Json with comment text)
    ```Python
@@ -220,14 +220,14 @@ Dictionary, json file(json with comment), and string formats are supported.
       }
    }
    """
-   stylesheet = loads_stylesheet(custom_theme)
+   stylesheet = qtvsc.loads_stylesheet(custom_theme)
    ```
 - Json with comment
    ```Python
    custom_theme_path = r"custom_theme.json"
    # or you can use pathlib.Path object
    # custom_theme_path = pathlib.Path("custom_theme.json")
-   stylesheet = load_stylesheet(custom_theme_path)
+   stylesheet = qtvsc.load_stylesheet(custom_theme_path)
    ```
 
 If you customize using json files, you can use json schema.
