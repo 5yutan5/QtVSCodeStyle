@@ -37,7 +37,7 @@ def setup_default_color_registry() -> None:
 
     # ----- base colors
     foreground = register_color("foreground", {"dark": "#CCCCCC", "light": "#616161", "hc": "#FFFFFF"})
-    errorForeground = register_color("errorForeground", {"dark": "#F48771", "light": "#A1260D", "hc": "#F48771"})
+    register_color("errorForeground", {"dark": "#F48771", "light": "#A1260D", "hc": "#F48771"})
     iconForeground = register_color("icon.foreground", {"dark": "#C5C5C5", "light": "#424242", "hc": "#FFFFFF"})
 
     focusBorder = register_color("focusBorder", {"dark": "#007FD4", "light": "#0090F1", "hc": "#F38518"})
@@ -47,17 +47,13 @@ def setup_default_color_registry() -> None:
     )  # Minor modification(None -> "transparent")
     activeContrastBorder = register_color("contrastActiveBorder", {"light": None, "dark": None, "hc": focusBorder})
 
-    selectionBackground = register_color(
+    register_color(
         "selection.background", {"light": "#a9d8ff", "dark": "#5b89b4", "hc": "#a9d8ff"}
     )  # Minor modification(None -> color)
 
     # ------ text colors
-    textLinkForeground = register_color(
-        "textLink.foreground", {"light": "#006AB1", "dark": "#3794FF", "hc": "#3794FF"}
-    )
-    textLinkActiveForeground = register_color(
-        "textLink.activeForeground", {"light": "#006AB1", "dark": "#3794FF", "hc": "#3794FF"}
-    )
+    register_color("textLink.foreground", {"light": "#006AB1", "dark": "#3794FF", "hc": "#3794FF"})
+    register_color("textLink.activeForeground", {"light": "#006AB1", "dark": "#3794FF", "hc": "#3794FF"})
 
     # ----- widgets
 
@@ -75,7 +71,7 @@ def setup_default_color_registry() -> None:
         "inputValidation.errorBorder", {"dark": "#BE1100", "light": "#BE1100", "hc": contrastBorder}
     )
 
-    inputPlaceholderForeground = register_color(
+    register_color(
         "input.placeholderForeground",
         {
             "light": transparent(foreground, 0.5),
@@ -87,9 +83,7 @@ def setup_default_color_registry() -> None:
     selectBackground = register_color(
         "dropdown.background", {"dark": "#3C3C3C", "light": Color.white(), "hc": Color.black()}
     )
-    selectListBackground = register_color(
-        "dropdown.listBackground", {"dark": None, "light": None, "hc": Color.black()}
-    )
+    register_color("dropdown.listBackground", {"dark": None, "light": None, "hc": Color.black()})
     selectForeground = register_color("dropdown.foreground", {"dark": "#F0F0F0", "light": None, "hc": Color.white()})
     selectBorder = register_color(
         "dropdown.border", {"dark": selectBackground, "light": "#CECECE", "hc": contrastBorder}
@@ -105,29 +99,23 @@ def setup_default_color_registry() -> None:
         "checkbox.border", {"dark": selectBorder, "light": selectBorder, "hc": selectBorder}
     )
 
-    buttonForeground = register_color(
-        "button.foreground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()}
-    )
+    register_color("button.foreground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()})
     buttonBackground = register_color("button.background", {"dark": "#0E639C", "light": "#007ACC", "hc": None})
-    buttonHoverBackground = register_color(
+    register_color(
         "button.hoverBackground",
         {"dark": lighten(buttonBackground, 0.2), "light": darken(buttonBackground, 0.2), "hc": None},
     )
-    buttonBorder = register_color(
-        "button.border", {"dark": contrastBorder, "light": contrastBorder, "hc": contrastBorder}
-    )
+    register_color("button.border", {"dark": contrastBorder, "light": contrastBorder, "hc": contrastBorder})
 
-    buttonSecondaryForeground = register_color(
-        "button.secondaryForeground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()}
-    )
+    register_color("button.secondaryForeground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()})
     buttonSecondaryBackground = register_color(
         "button.secondaryBackground", {"dark": "#3A3D41", "light": "#5F6A79", "hc": None}
     )
-    buttonSecondaryHoverBackground = register_color(
+    register_color(
         "button.secondaryHoverBackground",
         {"dark": lighten(buttonSecondaryBackground, 0.2), "light": darken(buttonSecondaryBackground, 0.2), "hc": None},
     )
-    scrollbarSliderBackground = register_color(
+    register_color(
         "scrollbarSlider.background",
         {
             "dark": Color.from_hex("#797979").transparent(0.4),
@@ -135,7 +123,7 @@ def setup_default_color_registry() -> None:
             "hc": transparent(contrastBorder, 0.6),
         },
     )
-    scrollbarSliderHoverBackground = register_color(
+    register_color(
         "scrollbarSlider.hoverBackground",
         {
             "dark": Color.from_hex("#646464").transparent(0.7),
@@ -143,7 +131,7 @@ def setup_default_color_registry() -> None:
             "hc": transparent(contrastBorder, 0.8),
         },
     )
-    scrollbarSliderActiveBackground = register_color(
+    register_color(
         "scrollbarSlider.activeBackground",
         {
             "dark": Color.from_hex("#BFBFBF").transparent(0.4),
@@ -165,9 +153,7 @@ def setup_default_color_registry() -> None:
     )
 
     # Editor foreground color.
-    editorForeground = register_color(
-        "editor.foreground", {"light": "#333333", "dark": "#BBBBBB", "hc": Color.white()}
-    )
+    register_color("editor.foreground", {"light": "#333333", "dark": "#BBBBBB", "hc": Color.white()})
 
     # Editor widgets
     editorWidgetBackground = register_color(
@@ -182,16 +168,14 @@ def setup_default_color_registry() -> None:
         "editorWidget.border", {"dark": "#454545", "light": "#C8C8C8", "hc": contrastBorder}
     )
 
-    editorWidgetResizeBorder = register_color("editorWidget.resizeBorder", {"light": None, "dark": None, "hc": None})
+    register_color("editorWidget.resizeBorder", {"light": None, "dark": None, "hc": None})
 
     # Editor selection colors.
     editorSelectionBackground = register_color(
         "editor.selectionBackground", {"light": "#ADD6FF", "dark": "#264F78", "hc": "#f3f518"}
     )
-    editorSelectionForeground = register_color(
-        "editor.selectionForeground", {"light": None, "dark": None, "hc": "#000000"}
-    )
-    editorInactiveSelection = register_color(
+    register_color("editor.selectionForeground", {"light": None, "dark": None, "hc": "#000000"})
+    register_color(
         "editor.inactiveSelectionBackground",
         {
             "light": transparent(editorSelectionBackground, 0.5),
@@ -199,7 +183,7 @@ def setup_default_color_registry() -> None:
             "hc": transparent(editorSelectionBackground, 0.5),
         },
     )  # deprecation
-    editorSelectionHighlight = register_color(
+    register_color(
         "editor.selectionHighlightBackground",
         {
             "light": less_prominent(editorSelectionBackground, editorBackground, 0.3, 0.6),
@@ -207,57 +191,49 @@ def setup_default_color_registry() -> None:
             "hc": None,
         },
     )  # deprecation
-    editorSelectionHighlightBorder = register_color(
-        "editor.selectionHighlightBorder", {"light": None, "dark": None, "hc": activeContrastBorder}
-    )
+    register_color("editor.selectionHighlightBorder", {"light": None, "dark": None, "hc": activeContrastBorder})
 
     # Editor hover
-    editorHoverBackground = register_color(
+    register_color(
         "editorHoverWidget.background",
         {"light": editorWidgetBackground, "dark": editorWidgetBackground, "hc": editorWidgetBackground},
     )
-    editorHoverForeground = register_color(
+    register_color(
         "editorHoverWidget.foreground",
         {"light": editorWidgetForeground, "dark": editorWidgetForeground, "hc": editorWidgetForeground},
     )
-    editorHoverBorder = register_color(
+    register_color(
         "editorHoverWidget.border", {"light": editorWidgetBorder, "dark": editorWidgetBorder, "hc": editorWidgetBorder}
     )
 
     # List and tree colors
     listFocusBackground = register_color("list.focusBackground", {"dark": None, "light": None, "hc": None})
-    listFocusForeground = register_color("list.focusForeground", {"dark": None, "light": None, "hc": None})
-    listFocusOutline = register_color(
-        "list.focusOutline", {"dark": focusBorder, "light": focusBorder, "hc": activeContrastBorder}
-    )
+    register_color("list.focusForeground", {"dark": None, "light": None, "hc": None})
+    register_color("list.focusOutline", {"dark": focusBorder, "light": focusBorder, "hc": activeContrastBorder})
     listActiveSelectionBackground = register_color(
         "list.activeSelectionBackground", {"dark": "#094771", "light": "#0060C0", "hc": editorBackground}
     )  # Minor modification(None -> editorBackground)
     listActiveSelectionForeground = register_color(
         "list.activeSelectionForeground", {"dark": Color.white(), "light": Color.white(), "hc": foreground}
     )  # Minor modification(None -> foreground)
-    listActiveSelectionIconForeground = register_color(
+    register_color(
         "list.activeSelectionIconForeground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()}
     )  # Minor modification(None -> color)
-    listInactiveSelectionBackground = register_color(
+    register_color(
         "list.inactiveSelectionBackground", {"dark": "#37373D", "light": "#E4E6F1", "hc": editorBackground}
     )  # Minor modification(None -> editorBackground)
-    listInactiveSelectionForeground = register_color(
-        "list.inactiveSelectionForeground", {"dark": None, "light": None, "hc": None}
-    )
-    listInactiveFocusBackground = register_color(
-        "list.inactiveFocusBackground", {"dark": None, "light": None, "hc": None}
-    )
-    listInactiveFocusOutline = register_color("list.inactiveFocusOutline", {"dark": None, "light": None, "hc": None})
-    listHoverBackground = register_color(
+    register_color("list.inactiveSelectionForeground", {"dark": None, "light": None, "hc": None})
+    register_color("list.inactiveFocusBackground", {"dark": None, "light": None, "hc": None})
+    register_color("list.inactiveFocusOutline", {"dark": None, "light": None, "hc": None})
+    register_color(
         "list.hoverBackground", {"dark": "#2A2D2E", "light": "#F0F0F0", "hc": "transparent"}
     )  # Minor modification(None -> "transparent")
-    listHoverForeground = register_color("list.hoverForeground", {"dark": None, "light": None, "hc": None})
-    listDropBackground = register_color("list.dropBackground", {"dark": "#062F4A", "light": "#D6EBFF", "hc": None})
+    register_color("list.hoverForeground", {"dark": None, "light": None, "hc": None})
+    register_color("list.dropBackground", {"dark": "#062F4A", "light": "#D6EBFF", "hc": None})
     listHighlightForeground = register_color(
         "list.highlightForeground", {"dark": "#18A3FF", "light": "#0066BF", "hc": focusBorder}
     )
-    listFocusHighlightForeground = register_color(
+    register_color(
         "list.focusHighlightForeground",
         {
             "dark": listHighlightForeground,
@@ -270,16 +246,12 @@ def setup_default_color_registry() -> None:
     )
 
     # Menu colors
-    menuBorder = register_color(
+    register_color(
         "menu.border", {"dark": "transparent", "light": "transparent", "hc": contrastBorder}
     )  # Minor modification(None -> "transparent")
-    menuForeground = register_color(
-        "menu.foreground", {"dark": selectForeground, "light": foreground, "hc": selectForeground}
-    )
-    menuBackground = register_color(
-        "menu.background", {"dark": selectBackground, "light": selectBackground, "hc": selectBackground}
-    )
-    menuSelectionForeground = register_color(
+    register_color("menu.foreground", {"dark": selectForeground, "light": foreground, "hc": selectForeground})
+    register_color("menu.background", {"dark": selectBackground, "light": selectBackground, "hc": selectBackground})
+    register_color(
         "menu.selectionForeground",
         {
             "dark": listActiveSelectionForeground,
@@ -287,7 +259,7 @@ def setup_default_color_registry() -> None:
             "hc": listActiveSelectionForeground,
         },
     )
-    menuSelectionBackground = register_color(
+    register_color(
         "menu.selectionBackground",
         {
             "dark": listActiveSelectionBackground,
@@ -295,21 +267,19 @@ def setup_default_color_registry() -> None:
             "hc": listActiveSelectionBackground,
         },
     )
-    menuSelectionBorder = register_color(
+    register_color(
         "menu.selectionBorder", {"dark": "transparent", "light": "transparent", "hc": activeContrastBorder}
     )  # Minor modification(None -> "transparent")
-    menuSeparatorBackground = register_color(
-        "menu.separatorBackground", {"dark": "#BBBBBB", "light": "#888888", "hc": contrastBorder}
-    )
+    register_color("menu.separatorBackground", {"dark": "#BBBBBB", "light": "#888888", "hc": contrastBorder})
 
     # Toolbar colors
     toolbarHoverBackground = register_color(
         "toolbar.hoverBackground", {"dark": "#5a5d5e50", "light": "#b8b8b850", "hc": None}
     )
-    toolbarHoverOutline = register_color(
+    register_color(
         "toolbar.hoverOutline", {"dark": "transparent", "light": "transparent", "hc": activeContrastBorder}
     )  # Minor modification(None -> "transparent")
-    toolbarActiveBackground = register_color(
+    register_color(
         "toolbar.activeBackground",
         {"dark": lighten(toolbarHoverBackground, 0.1), "light": darken(toolbarHoverBackground, 0.1), "hc": None},
     )
@@ -327,7 +297,7 @@ def setup_default_color_registry() -> None:
         "tab.activeBackground", {"dark": editorBackground, "light": editorBackground, "hc": editorBackground}
     )
 
-    TAB_UNFOCUSED_ACTIVE_BACKGROUND = register_color(
+    register_color(
         "tab.unfocusedActiveBackground",
         {"dark": TAB_ACTIVE_BACKGROUND, "light": TAB_ACTIVE_BACKGROUND, "hc": TAB_ACTIVE_BACKGROUND},
     )
@@ -336,7 +306,7 @@ def setup_default_color_registry() -> None:
         "tab.inactiveBackground", {"dark": "#2D2D2D", "light": "#ECECEC", "hc": None}
     )
 
-    TAB_UNFOCUSED_INACTIVE_BACKGROUND = register_color(
+    register_color(
         "tab.unfocusedInactiveBackground",
         {"dark": TAB_INACTIVE_BACKGROUND, "light": TAB_INACTIVE_BACKGROUND, "hc": TAB_INACTIVE_BACKGROUND},
     )
@@ -358,7 +328,7 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    TAB_UNFOCUSED_ACTIVE_FOREGROUND = register_color(
+    register_color(
         "tab.unfocusedActiveForeground",
         {
             "dark": transparent(TAB_ACTIVE_FOREGROUND, 0.5),
@@ -367,7 +337,7 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    TAB_UNFOCUSED_INACTIVE_FOREGROUND = register_color(
+    register_color(
         "tab.unfocusedInactiveForeground",
         {
             "dark": transparent(TAB_INACTIVE_FOREGROUND, 0.5),
@@ -382,14 +352,14 @@ def setup_default_color_registry() -> None:
 
     TAB_HOVER_BACKGROUND = register_color("tab.hoverBackground", {"dark": None, "light": None, "hc": None})
 
-    TAB_UNFOCUSED_HOVER_BACKGROUND = register_color(
+    register_color(
         "tab.unfocusedHoverBackground",
         {"dark": transparent(TAB_HOVER_BACKGROUND, 0.5), "light": transparent(TAB_HOVER_BACKGROUND, 0.7), "hc": None},
     )
 
     TAB_HOVER_FOREGROUND = register_color("tab.hoverForeground", {"dark": None, "light": None, "hc": None})
 
-    TAB_UNFOCUSED_HOVER_FOREGROUND = register_color(
+    register_color(
         "tab.unfocusedHoverForeground",
         {"dark": transparent(TAB_HOVER_FOREGROUND, 0.5), "light": transparent(TAB_HOVER_FOREGROUND, 0.5), "hc": None},
     )
@@ -398,18 +368,18 @@ def setup_default_color_registry() -> None:
 
     # #region Tab Borders
 
-    TAB_BORDER = register_color("tab.border", {"dark": "#252526", "light": "#F3F3F3", "hc": contrastBorder})
+    register_color("tab.border", {"dark": "#252526", "light": "#F3F3F3", "hc": contrastBorder})
 
     TAB_ACTIVE_BORDER = register_color("tab.activeBorder", {"dark": None, "light": None, "hc": None})
 
-    TAB_UNFOCUSED_ACTIVE_BORDER = register_color(
+    register_color(
         "tab.unfocusedActiveBorder",
         {"dark": transparent(TAB_ACTIVE_BORDER, 0.5), "light": transparent(TAB_ACTIVE_BORDER, 0.7), "hc": None},
     )
 
     TAB_ACTIVE_BORDER_TOP = register_color("tab.activeBorderTop", {"dark": None, "light": None, "hc": None})
 
-    TAB_UNFOCUSED_ACTIVE_BORDER_TOP = register_color(
+    register_color(
         "tab.unfocusedActiveBorderTop",
         {
             "dark": transparent(TAB_ACTIVE_BORDER_TOP, 0.5),
@@ -420,7 +390,7 @@ def setup_default_color_registry() -> None:
 
     TAB_HOVER_BORDER = register_color("tab.hoverBorder", {"dark": None, "light": None, "hc": None})
 
-    TAB_UNFOCUSED_HOVER_BORDER = register_color(
+    register_color(
         "tab.unfocusedHoverBorder",
         {"dark": transparent(TAB_HOVER_BORDER, 0.5), "light": transparent(TAB_HOVER_BORDER, 0.7), "hc": None},
     )
@@ -429,40 +399,30 @@ def setup_default_color_registry() -> None:
 
     #  < --- Editors --- >
 
-    EDITOR_GROUP_HEADER_TABS_BACKGROUND = register_color(
-        "editorGroupHeader.tabsBackground", {"dark": "#252526", "light": "#F3F3F3", "hc": None}
-    )
+    register_color("editorGroupHeader.tabsBackground", {"dark": "#252526", "light": "#F3F3F3", "hc": None})
 
-    EDITOR_GROUP_HEADER_TABS_BORDER = register_color(
-        "editorGroupHeader.tabsBorder", {"dark": None, "light": None, "hc": None}
-    )
+    register_color("editorGroupHeader.tabsBorder", {"dark": None, "light": None, "hc": None})
 
-    EDITOR_GROUP_HEADER_NO_TABS_BACKGROUND = register_color(
+    register_color(
         "editorGroupHeader.noTabsBackground",
         {"dark": editorBackground, "light": editorBackground, "hc": editorBackground},
     )
 
-    EDITOR_GROUP_HEADER_BORDER = register_color(
-        "editorGroupHeader.border", {"dark": None, "light": None, "hc": contrastBorder}
-    )
+    register_color("editorGroupHeader.border", {"dark": None, "light": None, "hc": contrastBorder})
 
-    EDITOR_GROUP_BORDER = register_color(
-        "editorGroup.border", {"dark": "#444444", "light": "#E7E7E7", "hc": contrastBorder}
-    )
+    register_color("editorGroup.border", {"dark": "#444444", "light": "#E7E7E7", "hc": contrastBorder})
 
     #  < --- Status --- >
 
-    STATUS_BAR_FOREGROUND = register_color(
-        "statusBar.foreground", {"dark": "#FFFFFF", "light": "#FFFFFF", "hc": "#FFFFFF"}
-    )
+    register_color("statusBar.foreground", {"dark": "#FFFFFF", "light": "#FFFFFF", "hc": "#FFFFFF"})
 
     STATUS_BAR_BACKGROUND = register_color("statusBar.background", {"dark": "#007ACC", "light": "#007ACC", "hc": None})
 
-    STATUS_BAR_BORDER = register_color(
+    register_color(
         "statusBar.border", {"dark": contrastBorder, "light": contrastBorder, "hc": contrastBorder}
     )  # Minor modification(None -> contrastBorder)
 
-    STATUS_BAR_ITEM_ACTIVE_BACKGROUND = register_color(
+    register_color(
         "statusBarItem.activeBackground",
         {
             "dark": Color.white().transparent(0.18),
@@ -471,7 +431,7 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    STATUS_BAR_ITEM_HOVER_BACKGROUND = register_color(
+    register_color(
         "statusBarItem.hoverBackground",
         {
             "dark": Color.white().transparent(0.12),
@@ -482,15 +442,13 @@ def setup_default_color_registry() -> None:
 
     #  < --- Activity Bar --- >
 
-    ACTIVITY_BAR_BACKGROUND = register_color(
-        "activityBar.background", {"dark": "#333333", "light": "#2C2C2C", "hc": "#000000"}
-    )
+    register_color("activityBar.background", {"dark": "#333333", "light": "#2C2C2C", "hc": "#000000"})
 
     ACTIVITY_BAR_FOREGROUND = register_color(
         "activityBar.foreground", {"dark": Color.white(), "light": Color.white(), "hc": Color.white()}
     )
 
-    ACTIVITY_BAR_INACTIVE_FOREGROUND = register_color(
+    register_color(
         "activityBar.inactiveForeground",
         {
             "dark": transparent(ACTIVITY_BAR_FOREGROUND, 0.4),
@@ -499,31 +457,25 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    ACTIVITY_BAR_BORDER = register_color(
+    register_color(
         "activityBar.border", {"dark": contrastBorder, "light": contrastBorder, "hc": contrastBorder}
     )  # Minor modification(None -> contrastBorder)
 
-    ACTIVITY_BAR_ACTIVE_BORDER = register_color(
+    register_color(
         "activityBar.activeBorder", {"dark": ACTIVITY_BAR_FOREGROUND, "light": ACTIVITY_BAR_FOREGROUND, "hc": None}
     )
 
-    ACTIVITY_BAR_ACTIVE_FOCUS_BORDER = register_color(
-        "activityBar.activeFocusBorder", {"dark": None, "light": None, "hc": None}
-    )
+    register_color("activityBar.activeFocusBorder", {"dark": None, "light": None, "hc": None})
 
-    ACTIVITY_BAR_ACTIVE_BACKGROUND = register_color(
-        "activityBar.activeBackground", {"dark": None, "light": None, "hc": None}
-    )
+    register_color("activityBar.activeBackground", {"dark": None, "light": None, "hc": None})
 
     #  < --- Side Bar --- >
 
-    SIDE_BAR_BACKGROUND = register_color(
-        "sideBar.background", {"dark": "#252526", "light": "#F3F3F3", "hc": "#000000"}
-    )
+    register_color("sideBar.background", {"dark": "#252526", "light": "#F3F3F3", "hc": "#000000"})
 
-    SIDE_BAR_FOREGROUND = register_color("sideBar.foreground", {"dark": None, "light": None, "hc": None})
+    register_color("sideBar.foreground", {"dark": None, "light": None, "hc": None})
 
-    SIDE_BAR_BORDER = register_color("sideBar.border", {"dark": None, "light": None, "hc": contrastBorder})
+    register_color("sideBar.border", {"dark": None, "light": None, "hc": contrastBorder})
 
     #  < --- Title Bar --- >
 
@@ -531,7 +483,7 @@ def setup_default_color_registry() -> None:
         "titleBar.activeForeground", {"dark": "#CCCCCC", "light": "#333333", "hc": "#FFFFFF"}
     )
 
-    TITLE_BAR_INACTIVE_FOREGROUND = register_color(
+    register_color(
         "titleBar.inactiveForeground",
         {
             "dark": transparent(TITLE_BAR_ACTIVE_FOREGROUND, 0.6),
@@ -544,7 +496,7 @@ def setup_default_color_registry() -> None:
         "titleBar.activeBackground", {"dark": "#3C3C3C", "light": "#DDDDDD", "hc": "#000000"}
     )
 
-    TITLE_BAR_INACTIVE_BACKGROUND = register_color(
+    register_color(
         "titleBar.inactiveBackground",
         {
             "dark": transparent(TITLE_BAR_ACTIVE_BACKGROUND, 0.6),
@@ -553,23 +505,23 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    TITLE_BAR_BORDER = register_color(
+    register_color(
         "titleBar.border", {"dark": "transparent", "light": "transparent", "hc": contrastBorder}
     )  # Minor modification(None -> "transparent")
 
     #  < --- Menubar --- >
 
-    MENUBAR_SELECTION_FOREGROUND = register_color(
+    register_color(
         "menubar.selectionForeground",
         {"dark": TITLE_BAR_ACTIVE_FOREGROUND, "light": TITLE_BAR_ACTIVE_FOREGROUND, "hc": TITLE_BAR_ACTIVE_FOREGROUND},
     )
 
-    MENUBAR_SELECTION_BACKGROUND = register_color(
+    register_color(
         "menubar.selectionBackground",
         {"dark": transparent(Color.white(), 0.1), "light": transparent(Color.black(), 0.1), "hc": None},
     )
 
-    MENUBAR_SELECTION_BORDER = register_color(
+    register_color(
         "menubar.selectionBorder",
         {
             "dark": "transparent",
@@ -587,20 +539,16 @@ def setup_default_color_registry() -> None:
     #   https://github.com/microsoft/vscode/blob/main/src/vs/editor/common/view/editorColorRegistry.ts
     #   https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/comments/browser/commentGlyphWidget.ts
 
-    editorLineHighlight = register_color("editor.lineHighlightBackground", {"dark": None, "light": None, "hc": None})
-    editorLineHighlightBorder = register_color(
-        "editor.lineHighlightBorder", {"dark": "#282828", "light": "#eeeeee", "hc": "#f38518"}
-    )
+    register_color("editor.lineHighlightBackground", {"dark": None, "light": None, "hc": None})
+    register_color("editor.lineHighlightBorder", {"dark": "#282828", "light": "#eeeeee", "hc": "#f38518"})
 
     # Settings editor colors
     # Rewrite:
     #   https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/preferences/browser/settingsWidgets.ts
 
-    debugToolBarBackground = register_color(
-        "debugToolBar.background", {"dark": "#333333", "light": "#F3F3F3", "hc": "#000000"}
-    )
+    register_color("debugToolBar.background", {"dark": "#333333", "light": "#F3F3F3", "hc": "#000000"})
 
-    debugToolBarBorder = register_color(
+    register_color(
         "debugToolBar.border", {"dark": contrastBorder, "light": contrastBorder, "hc": contrastBorder}
     )  # Minor modification(None -> contrastBorder)
 
@@ -608,64 +556,56 @@ def setup_default_color_registry() -> None:
     # Rewrite:
     #   https://github.com/microsoft/vscode/blob/main/src/vs/workbench/contrib/preferences/browser/settingsWidgets.ts
 
-    settingsHeaderForeground = register_color(
-        "settings.headerForeground", {"light": "#444444", "dark": "#e7e7e7", "hc": "#ffffff"}
-    )
-    modifiedItemIndicator = register_color(
+    register_color("settings.headerForeground", {"light": "#444444", "dark": "#e7e7e7", "hc": "#ffffff"})
+    register_color(
         "settings.modifiedItemIndicator",
         {"light": Color(RGBA(102, 175, 224)), "dark": Color(RGBA(12, 125, 157)), "hc": Color(RGBA(0, 73, 122))},
     )
 
     # Enum control colors
-    settingsSelectBackground = register_color(
+    register_color(
         "settings.dropdownBackground", {"dark": selectBackground, "light": selectBackground, "hc": selectBackground}
     )
-    settingsSelectForeground = register_color(
+    register_color(
         "settings.dropdownForeground", {"dark": selectForeground, "light": selectForeground, "hc": selectForeground}
     )
-    settingsSelectBorder = register_color(
-        "settings.dropdownBorder", {"dark": selectBorder, "light": selectBorder, "hc": selectBorder}
-    )
-    settingsSelectListBorder = register_color(
+    register_color("settings.dropdownBorder", {"dark": selectBorder, "light": selectBorder, "hc": selectBorder})
+    register_color(
         "settings.dropdownListBorder",
         {"dark": editorWidgetBorder, "light": editorWidgetBorder, "hc": editorWidgetBorder},
     )
 
     # Bool control colors
-    settingsCheckboxBackground = register_color(
+    register_color(
         "settings.checkboxBackground",
         {"dark": simpleCheckboxBackground, "light": simpleCheckboxBackground, "hc": simpleCheckboxBackground},
     )
-    settingsCheckboxForeground = register_color(
+    register_color(
         "settings.checkboxForeground",
         {"dark": simpleCheckboxForeground, "light": simpleCheckboxForeground, "hc": simpleCheckboxForeground},
     )
-    settingsCheckboxBorder = register_color(
+    register_color(
         "settings.checkboxBorder",
         {"dark": simpleCheckboxBorder, "light": simpleCheckboxBorder, "hc": simpleCheckboxBorder},
     )
 
     # Text control colors
-    settingsTextInputBackground = register_color(
+    register_color(
         "settings.textInputBackground", {"dark": inputBackground, "light": inputBackground, "hc": inputBackground}
     )
-    settingsTextInputForeground = register_color(
+    register_color(
         "settings.textInputForeground", {"dark": inputForeground, "light": inputForeground, "hc": inputForeground}
     )
-    settingsTextInputBorder = register_color(
-        "settings.textInputBorder", {"dark": inputBorder, "light": inputBorder, "hc": inputBorder}
-    )
+    register_color("settings.textInputBorder", {"dark": inputBorder, "light": inputBorder, "hc": inputBorder})
 
     # Number control colors
-    settingsNumberInputBackground = register_color(
+    register_color(
         "settings.numberInputBackground", {"dark": inputBackground, "light": inputBackground, "hc": inputBackground}
     )
-    settingsNumberInputForeground = register_color(
+    register_color(
         "settings.numberInputForeground", {"dark": inputForeground, "light": inputForeground, "hc": inputForeground}
     )
-    settingsNumberInputBorder = register_color(
-        "settings.numberInputBorder", {"dark": inputBorder, "light": inputBorder, "hc": inputBorder}
-    )
+    register_color("settings.numberInputBorder", {"dark": inputBorder, "light": inputBorder, "hc": inputBorder})
 
     focusedRowBackground = register_color(
         "settings.focusedRowBackground",
@@ -676,12 +616,12 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    rowHoverBackground = register_color(
+    register_color(
         "settings.rowHoverBackground",
         {"dark": transparent(focusedRowBackground, 0.5), "light": transparent(focusedRowBackground, 0.7), "hc": None},
     )
 
-    focusedRowBorder = register_color(
+    register_color(
         "settings.focusedRowBorder",
         {"dark": Color.white().transparent(0.12), "light": Color.black().transparent(0.12), "hc": focusBorder},
     )
