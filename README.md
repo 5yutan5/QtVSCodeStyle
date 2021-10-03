@@ -46,7 +46,7 @@ PyPi is not yet. Please wait publish.
 
 ### Use default theme
 
-You can use VS Code's default theme by using `Theme` enum.
+To apply VS Code's default theme, run:
 
 ```Python
 import sys
@@ -235,7 +235,7 @@ To check common widgets, run:
 python -m qtvscodestyle.examples.widget_gallery
 ```
 
-## Custom Properties
+## Custom properties
 
 This module provides several custom properties for applying VS Code's style.  
 
