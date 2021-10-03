@@ -80,9 +80,6 @@ app.exec()
 To check available themes, run:
 
 ```Python
-import qtvscodestyle qtvsc
-
-# list theme name and symbol
 qtvsc.list_themes()
 ```
 
@@ -132,8 +129,6 @@ stylesheet = qtvsc.load_stylesheet(qtvsc.Theme.DARK_VS, custom_colors)
 To check available themes, run:
 
 ```Python
-import qtvscodestyle as qtvsc
-
 qtvsc.list_color_id()
 ```
 
@@ -207,9 +202,6 @@ Dictionary, json file(json with comment), and string formats are supported.
    ```
 - String(Json with comment text)
    ```Python
-   # You need to use loads_stylesheet
-   from qtvscodestyle import loads_stylesheet
-   ...
    custom_theme = """
    {
       "type": "dark",
@@ -220,6 +212,7 @@ Dictionary, json file(json with comment), and string formats are supported.
       }
    }
    """
+   # You need to use loads_stylesheet
    stylesheet = qtvsc.loads_stylesheet(custom_theme)
    ```
 - Json with comment
