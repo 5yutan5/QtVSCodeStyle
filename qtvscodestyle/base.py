@@ -9,8 +9,6 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Optional, Union
 
-from typing_extensions import Literal
-
 from qtvscodestyle.stylesheet.build import build_stylesheet
 from qtvscodestyle.util import multireplace
 from qtvscodestyle.vscode.color import Color
@@ -81,9 +79,7 @@ def _loads_jsonc(json_text: str) -> dict:
     return json.loads(result)
 
 
-def _merge_colors_to_default(
-    colors: dict[str, str], type: Literal["dark", "light", "hc"]
-) -> dict[str, Optional[Color]]:
+def _merge_colors_to_default(colors: dict[str, str], type: str) -> dict[str, Optional[Color]]:
     color_registry = ColorRegistry()
     for id, color in colors.items():
         color_registry.register_color(id, color, type)
