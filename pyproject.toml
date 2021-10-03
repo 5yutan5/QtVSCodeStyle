@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "QtVSCodeStyle"
-version = "0.1.0"
+version = "0.1.1"
 description = "VS Code Style for PySide, PyQt."
 authors = ["Yunosuke Ohsugi <63651161+5yutan5@users.noreply.github.com>"]
 license = "MIT"
