@@ -9,7 +9,7 @@ from importlib import resources
 from pathlib import Path
 from typing import Optional
 
-from qtvscodestyle.util import multireplace
+from qtvscodestyle.util import multireplace, to_svg_color_format
 from qtvscodestyle.vscode.color import Color
 
 
@@ -26,7 +26,8 @@ def _parse_env_patch(stylesheet: str) -> dict[str, str]:
     try:
         from qtvscodestyle.qtpy import __version__ as qt_version
     except ImportError:
-        print("Failed to load Qt version. Load as the latest version.")
+        print("Failed to load Qt version. Load stylesheet as the latest version.")
+        print("-----------------------------------------------------------------")
         qt_version = "10.0.0"  # Fairly future version for always setting latest version.
 
     # greater_equal and less_equal must be evaluated before greater and less.
@@ -90,27 +91,24 @@ def _parse_url(stylesheet: str, dir_path: Path, is_designer: bool = False) -> tu
 
 
 def _output_converted_svg_file(colors: dict[str, Optional[Color]], urls: set[_Url]) -> None:
-    contents = resources.contents("qtvscodestyle.google_fonts")
     svg_codes: dict[str, str] = {}  # {file name: svg code}
-    for content in contents:
+    for content in resources.contents("qtvscodestyle.vscode.icons"):
         if ".svg" not in content:  # Only svg file
             continue
-        svg_code = resources.read_text("qtvscodestyle.google_fonts", content)
+        svg_code = resources.read_text("qtvscodestyle.vscode.icons", content)
         svg_codes[content] = svg_code
 
-    # QSvg does not support rgba(...). Therefore, we need to set the alpha value to `fill-opacity` instead.
-    def to_svg_color_format(color: Optional[Color]) -> str:
-        if color is None:
-            return 'fill=""'
-        r, g, b, a = color.rgba
-        return f'fill="rgb({r}, {g}, {b})" fill-opacity="{a}"'
+    for content in resources.contents("qtvscodestyle.stylesheet.icons"):
+        if ".svg" not in content:  # Only svg file
+            continue
+        svg_code = resources.read_text("qtvscodestyle.stylesheet.icons", content)
+        svg_codes[content] = svg_code
 
     for url in urls:
         color = colors["$" + url.id]
-        # Change color and rotate.
-        # See https://stackoverflow.com/a/15139069/13452582
+        # Change color and rotate. See https://stackoverflow.com/a/15139069/13452582
         new_contents = f'{to_svg_color_format(color)} transform="rotate({url.rotate}, 12, 12)"'
-        svg_code_converted = svg_codes[url.icon].replace('fill="#FFFFFF"', new_contents)
+        svg_code_converted = svg_codes[url.icon].replace('fill="currentColor"', new_contents)
 
         with url.path.open("w") as f:
             f.write(svg_code_converted)
@@ -119,7 +117,9 @@ def _output_converted_svg_file(colors: dict[str, Optional[Color]], urls: set[_Ur
 def build_stylesheet(
     colors: dict[str, Optional[Color]], theme_type: str, output_svg_path: Path, is_designer: bool
 ) -> str:
-    stylesheet_template = resources.read_text("qtvscodestyle", "template.qss")
+    stylesheet_template = resources.read_text("qtvscodestyle.stylesheet", "template.qss")
+    # Convert id for stylesheet variable
+    colors = {f"${id}".replace(".", "_"): color for id, color in colors.items()}
 
     # Parse $type_patch{...} and $env_patch{...} in template stylesheet.
     type_patch_replacements = _parse_theme_type_patch(stylesheet_template, theme_type)
