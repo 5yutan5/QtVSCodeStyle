@@ -1,16 +1,16 @@
 /* ====================================================================================================
  * QtVSCodeStyle.
  *
- *  :author: Microsoft Corporation
- *  :editor: Yunosuke Ohsugi
- *  :license: MIT, see LICENSE.txt file
+ *  Copyright (c) 2015- Microsoft Corporation
+ *  Copyright (c) 2021- Yunosuke Ohsugi
+ *
+ *	Distributed under the terms of the MIT License.
+ *  See https://github.com/microsoft/vscode/blob/main/LICENSE.txt
  *
  * Original code:
  *   https://github.com/microsoft/vscode/blob/main/extensions/theme-abyss/themes/abyss-color-theme.json
- * ---------------------------------------------------------------------
  *
- * Copyright (c) <2015-> <Microsoft Corporation>
- * Copyright (c) <2021-> <Yunosuke Ohsugi>
+ * (see NOTICE.md in the QtVSCodeStyle root directory for details)
  * ====================================================================================================
  */
 {

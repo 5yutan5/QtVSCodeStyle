@@ -1,41 +1,32 @@
-/* =============================================================================================
+/* =================================================================================================
  * QtVSCodeStyle.
  *
- *  :author: Microsoft Corporation
- *  :editor: Yunosuke Ohsugi
- *  :license: MIT, see LICENSE.txt file
+ *  Copyright (c) 2015- Microsoft Corporation
+ *  Copyright (c) 2021- Yunosuke Ohsugi
+ *
+ *	Distributed under the terms of the MIT License.
+ *  See https://github.com/microsoft/vscode/blob/main/LICENSE.txt
  *
  * Original code:
- *   https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_vs.json
- * ---------------------------------------------------------------------
+ *   https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/hc_black.json
  *
- * Copyright (c) <2015-> <Microsoft Corporation>
- * Copyright (c) <2021-> <Yunosuke Ohsugi>
- * =============================================================================================
+ * (see NOTICE.md in the QtVSCodeStyle root directory for details)
+ * =================================================================================================
  */
 {
 	"$schema": "vscode://schemas/color-theme",
-	"name": "Dark (Visual Studio)",
+	"name": "Dark High Contrast",
 	"colors": {
-		"editor.background": "#1E1E1E",
-		"editor.foreground": "#D4D4D4",
-		"editor.inactiveSelectionBackground": "#3A3D41",
-		"editorIndentGuide.background": "#404040",
-		"editorIndentGuide.activeBackground": "#707070",
-		"editor.selectionHighlightBackground": "#ADD6FF26",
-		"list.dropBackground": "#383B3D",
-		"activityBarBadge.background": "#007ACC",
-		"sideBarTitle.foreground": "#BBBBBB",
-		"input.placeholderForeground": "#A6A6A6",
-		"menu.background": "#252526",
-		"menu.foreground": "#CCCCCC",
-		"statusBarItem.remoteForeground": "#FFF",
-		"statusBarItem.remoteBackground": "#16825D",
-		"ports.iconRunningProcessForeground": "#369432",
-		"sideBarSectionHeader.background": "#0000",
-		"sideBarSectionHeader.border": "#ccc3",
-		"tab.lastPinnedBorder": "#ccc3",
-		"list.activeSelectionIconForeground": "#FFF"
+		"editor.background": "#000000",
+		"editor.foreground": "#FFFFFF",
+		"editorIndentGuide.background": "#FFFFFF",
+		"editorIndentGuide.activeBackground": "#FFFFFF",
+		"sideBarTitle.foreground": "#FFFFFF",
+		"selection.background": "#008000",
+		"editor.selectionBackground": "#FFFFFF",
+		"statusBarItem.remoteBackground": "#00000000",
+		"ports.iconRunningProcessForeground": "#FFFFFF",
+		"editorWhitespace.foreground": "#7c7c7c"
 	},
 	"tokenColors": [
 		{
@@ -44,7 +35,7 @@
 				"source.groovy.embedded"
 			],
 			"settings": {
-				"foreground": "#D4D4D4"
+				"foreground": "#FFFFFF"
 			}
 		},
 		{
@@ -60,7 +51,7 @@
 			}
 		},
 		{
-			"scope": "header",
+			"scope": "meta.diff.header",
 			"settings": {
 				"foreground": "#000080"
 			}
@@ -68,7 +59,7 @@
 		{
 			"scope": "comment",
 			"settings": {
-				"foreground": "#6A9955"
+				"foreground": "#7ca668"
 			}
 		},
 		{
@@ -80,9 +71,9 @@
 		{
 			"scope": [
 				"constant.numeric",
-				"variable.other.enummember",
-				"keyword.operator.plus.exponent",
-				"keyword.operator.minus.exponent"
+				"constant.other.color.rgb-value",
+				"constant.other.rgb-value",
+				"support.constant.color"
 			],
 			"settings": {
 				"foreground": "#b5cea8"
@@ -91,7 +82,13 @@
 		{
 			"scope": "constant.regexp",
 			"settings": {
-				"foreground": "#646695"
+				"foreground": "#b46695"
+			}
+		},
+		{
+			"scope": "constant.character",
+			"settings": {
+				"foreground": "#569cd6"
 			}
 		},
 		{
@@ -142,15 +139,14 @@
 		{
 			"scope": "markup.bold",
 			"settings": {
-				"fontStyle": "bold",
-				"foreground": "#569cd6"
+				"fontStyle": "bold"
 			}
 		},
 		{
 			"scope": "markup.heading",
 			"settings": {
 				"fontStyle": "bold",
-				"foreground": "#569cd6"
+				"foreground": "#6796e6"
 			}
 		},
 		{
@@ -178,35 +174,16 @@
 			}
 		},
 		{
-			"scope": "punctuation.definition.quote.begin.markdown",
-			"settings": {
-				"foreground": "#6A9955"
-			}
-		},
-		{
-			"scope": "punctuation.definition.list.begin.markdown",
-			"settings": {
-				"foreground": "#6796e6"
-			}
-		},
-		{
-			"scope": "markup.inline.raw",
-			"settings": {
-				"foreground": "#ce9178"
-			}
-		},
-		{
 			"name": "brackets of XML/HTML tags",
-			"scope": "punctuation.definition.tag",
+			"scope": [
+				"punctuation.definition.tag"
+			],
 			"settings": {
 				"foreground": "#808080"
 			}
 		},
 		{
-			"scope": [
-				"meta.preprocessor",
-				"entity.name.function.preprocessor"
-			],
+			"scope": "meta.preprocessor",
 			"settings": {
 				"foreground": "#569cd6"
 			}
@@ -230,12 +207,6 @@
 			}
 		},
 		{
-			"scope": "meta.diff.header",
-			"settings": {
-				"foreground": "#569cd6"
-			}
-		},
-		{
 			"scope": "storage",
 			"settings": {
 				"foreground": "#569cd6"
@@ -248,19 +219,13 @@
 			}
 		},
 		{
-			"scope": [
-				"storage.modifier",
-				"keyword.operator.noexcept"
-			],
+			"scope": "storage.modifier",
 			"settings": {
 				"foreground": "#569cd6"
 			}
 		},
 		{
-			"scope": [
-				"string",
-				"meta.embedded.assembly"
-			],
+			"scope": "string",
 			"settings": {
 				"foreground": "#ce9178"
 			}
@@ -300,7 +265,7 @@
 				"meta.template.expression"
 			],
 			"settings": {
-				"foreground": "#d4d4d4"
+				"foreground": "#ffffff"
 			}
 		},
 		{
@@ -313,7 +278,7 @@
 				"source.coffee.embedded"
 			],
 			"settings": {
-				"foreground": "#9cdcfe"
+				"foreground": "#d4d4d4"
 			}
 		},
 		{
@@ -340,12 +305,7 @@
 				"keyword.operator.expression",
 				"keyword.operator.cast",
 				"keyword.operator.sizeof",
-				"keyword.operator.alignof",
-				"keyword.operator.typeid",
-				"keyword.operator.alignas",
-				"keyword.operator.instanceof",
-				"keyword.operator.logical.python",
-				"keyword.operator.wordlike"
+				"keyword.operator.logical.python"
 			],
 			"settings": {
 				"foreground": "#569cd6"
@@ -358,18 +318,9 @@
 			}
 		},
 		{
-			"scope": [
-				"punctuation.section.embedded.begin.php",
-				"punctuation.section.embedded.end.php"
-			],
-			"settings": {
-				"foreground": "#569cd6"
-			}
-		},
-		{
 			"scope": "support.function.git-rebase",
 			"settings": {
-				"foreground": "#9cdcfe"
+				"foreground": "#d4d4d4"
 			}
 		},
 		{
@@ -390,18 +341,132 @@
 			}
 		},
 		{
-			"name": "this.self",
-			"scope": "variable.language",
+			"name": "coloring of the TS this",
+			"scope": "variable.language.this",
 			"settings": {
 				"foreground": "#569cd6"
+			}
+		},
+		{
+			"name": "Function declarations",
+			"scope": [
+				"entity.name.function",
+				"support.function",
+				"support.constant.handlebars",
+				"source.powershell variable.other.member"
+			],
+			"settings": {
+				"foreground": "#DCDCAA"
+			}
+		},
+		{
+			"name": "Types declaration and references",
+			"scope": [
+				"meta.return-type",
+				"support.class",
+				"support.type",
+				"entity.name.type",
+				"entity.name.namespace",
+				"entity.name.scope-resolution",
+				"entity.name.class",
+				"storage.type.cs",
+				"storage.type.generic.cs",
+				"storage.type.modifier.cs",
+				"storage.type.variable.cs",
+				"storage.type.annotation.java",
+				"storage.type.generic.java",
+				"storage.type.java",
+				"storage.type.object.array.java",
+				"storage.type.primitive.array.java",
+				"storage.type.primitive.java",
+				"storage.type.token.java",
+				"storage.type.groovy",
+				"storage.type.annotation.groovy",
+				"storage.type.parameters.groovy",
+				"storage.type.generic.groovy",
+				"storage.type.object.array.groovy",
+				"storage.type.primitive.array.groovy",
+				"storage.type.primitive.groovy"
+			],
+			"settings": {
+				"foreground": "#4EC9B0"
+			}
+		},
+		{
+			"name": "Types declaration and references, TS grammar specific",
+			"scope": [
+				"meta.type.cast.expr",
+				"meta.type.new.expr",
+				"support.constant.math",
+				"support.constant.dom",
+				"support.constant.json",
+				"entity.other.inherited-class"
+			],
+			"settings": {
+				"foreground": "#4EC9B0"
+			}
+		},
+		{
+			"name": "Control flow / Special keywords",
+			"scope": [
+				"keyword.control",
+				"source.cpp keyword.operator.new",
+				"source.cpp keyword.operator.delete",
+				"keyword.other.using",
+				"keyword.other.operator"
+			],
+			"settings": {
+				"foreground": "#C586C0"
+			}
+		},
+		{
+			"name": "Variable and parameter name",
+			"scope": [
+				"variable",
+				"meta.definition.variable.name",
+				"support.variable"
+			],
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"name": "Object keys, TS grammar specific",
+			"scope": [
+				"meta.object-literal.key"
+			],
+			"settings": {
+				"foreground": "#9CDCFE"
+			}
+		},
+		{
+			"name": "CSS property value",
+			"scope": [
+				"support.constant.property-value",
+				"support.constant.font-name",
+				"support.constant.media-type",
+				"support.constant.media",
+				"constant.other.color.rgb-value",
+				"constant.other.rgb-value",
+				"support.constant.color"
+			],
+			"settings": {
+				"foreground": "#CE9178"
+			}
+		},
+		{
+			"name": "HC Search Editor context line override",
+			"scope": "meta.resultLinePrefix.contextLinePrefix.search",
+			"settings": {
+				"foreground": "#CBEDCB"
 			}
 		}
 	],
 	"semanticHighlighting": true,
 	"semanticTokenColors": {
-		"newOperator": "#d4d4d4",
+		"newOperator": "#FFFFFF",
 		"stringLiteral": "#ce9178",
-		"customLiteral": "#D4D4D4",
-		"numberLiteral": "#b5cea8",
+		"customLiteral": "#DCDCAA",
+		"numberLiteral": "#b5cea8"
 	}
 }
