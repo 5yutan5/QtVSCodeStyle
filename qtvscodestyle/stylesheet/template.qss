@@ -1314,6 +1314,10 @@ QToolBar[type="activitybar"] > QToolButton:checked {
 QToolBar[type="activitybar"] > QToolButton:pressed {
     $type_patch{"types": "hc", "value": "border-style: solid;"};
 }
+/* Hides the menu indicator on activitybar. */
+QToolBar[type="activitybar"] > QToolButton::menu-indicator {
+    width: 0;
+}
 QToolBar[type="activitybar"] > QToolButton#qt_toolbar_ext_button {
     image: $url{"icon": "fold-up.svg", "id": "icon_foreground", "rotate": "45"};
 }
