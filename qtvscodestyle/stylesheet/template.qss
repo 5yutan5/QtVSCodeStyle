@@ -1078,7 +1078,8 @@ QLineEdit,
 QAbstractSpinBox {
     border: 1px solid $input_border;
     padding: 3px 4px;
-    min-height: 0.7em;
+    /* Adjust the min-height of QLineEdit to the height of the characters. */
+    min-height: 1em;
     color: $input_foreground;
     background-color: $input_background;
 }
