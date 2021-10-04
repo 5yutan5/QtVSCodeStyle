@@ -5,8 +5,8 @@ from qtvscodestyle.qtpy.QtCore import Qt
 from qtvscodestyle.qtpy.QtGui import QAction
 from qtvscodestyle.qtpy.QtWidgets import (
     QMainWindow,
-    QMenu,
     QMenuBar,
+    QSizePolicy,
     QStackedWidget,
     QStatusBar,
     QToolBar,
@@ -20,11 +20,12 @@ class UI:
         # VSCode icons
         home_icon = qtvsc.theme_icon(qtvsc.Vsc.HOME, "activityBar.foreground")
         multi_windows_icon = qtvsc.theme_icon(qtvsc.Vsc.MULTIPLE_WINDOWS, "activityBar.foreground")
+        settings_icon = qtvsc.theme_icon(qtvsc.Vsc.SETTINGS_GEAR, "activityBar.foreground")
         folder_open_icon = qtvsc.theme_icon(qtvsc.Vsc.FOLDER)
         palette_icon = qtvsc.theme_icon(qtvsc.Vsc.SYMBOL_COLOR)
         circle_icon = qtvsc.theme_icon(qtvsc.Vsc.CIRCLE_LARGE_OUTLINE)
         clear_icon = qtvsc.theme_icon(qtvsc.Vsc.CLOSE)
-        settings_icon = qtvsc.theme_icon(qtvsc.Vsc.SETTINGS_GEAR)
+        theme_icon = qtvsc.theme_icon(qtvsc.Vsc.COLOR_MODE)
 
         # Widgets
         self.central_window = QMainWindow()
@@ -45,42 +46,50 @@ class UI:
         tool_button_settings = QToolButton()
         tool_button_enable = QToolButton()
         tool_button_disable = QToolButton()
+        tool_button_theme = QToolButton()
+
+        self.spacer = QToolButton()
 
         # Setup Widgets
+        self.spacer.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        self.spacer.setEnabled(False)
+
         self.action_change_home_window.setCheckable(True)
         self.action_change_dock_window.setCheckable(True)
         self.action_change_home_window.setChecked(True)
         activitybar.setMovable(False)
         activitybar.addActions([self.action_change_home_window, self.action_change_dock_window])
+        activitybar.addWidget(self.spacer)
+        activitybar.addWidget(tool_button_settings)
 
         tool_button_settings.setIcon(settings_icon)
         tool_button_settings.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
         tool_button_enable.setDefaultAction(self.action_enable)
         tool_button_disable.setDefaultAction(self.action_disable)
+        tool_button_theme.setIcon(theme_icon)
+        tool_button_theme.setPopupMode(QToolButton.ToolButtonPopupMode.InstantPopup)
 
         toolbar.addActions([self.action_open_folder, self.action_open_color_dialog])
         toolbar.addSeparator()
-        toolbar.addWidget(tool_button_settings)
+        toolbar.addWidget(tool_button_theme)
 
         statusbar.addPermanentWidget(tool_button_enable)
         statusbar.addPermanentWidget(tool_button_disable)
         statusbar.showMessage("Enable")
 
-        menu = menubar.addMenu("&Menu")
-        menu.addAction(self.action_open_folder)
-        menu.addSeparator()
-        menu_toggle_status = menu.addMenu("&Toggle Status")
-        menu_toggle_status.addActions([self.action_enable, self.action_disable])
-
-        menu_settings = QMenu(main_win)
-        menu_settings.addActions([self.action_enable, self.action_disable])
-        menu_theme = menu_settings.addMenu("theme")
+        menu_toggle = menubar.addMenu("&Toggle")
+        menu_toggle.addActions([self.action_enable, self.action_disable])
+        menu_theme = menubar.addMenu("&Theme")
         menu_theme.addActions(self.actions_theme)
-        tool_button_settings.setMenu(menu_settings)
+        menu_dialog = menubar.addMenu("&Dialog")
+        menu_dialog.addActions([self.action_open_folder, self.action_open_color_dialog])
+
+        tool_button_settings.setMenu(menu_toggle)
+        tool_button_theme.setMenu(menu_theme)
 
         self.action_enable.setEnabled(False)
 
-        # setup qss property
+        # setup custom property
         activitybar.setProperty("type", "activitybar")
 
         # layout
