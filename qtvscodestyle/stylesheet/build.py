@@ -107,7 +107,7 @@ def _output_converted_svg_file(colors: dict[str, Optional[Color]], urls: set[_Ur
     for url in urls:
         color = colors["$" + url.id]
         # Change color and rotate. See https://stackoverflow.com/a/15139069/13452582
-        new_contents = f'{to_svg_color_format(color)} transform="rotate({url.rotate}, 12, 12)"'
+        new_contents = f'{to_svg_color_format(color)} transform="rotate({url.rotate}, 8, 8)"'
         svg_code_converted = svg_codes[url.icon].replace('fill="currentColor"', new_contents)
 
         with url.path.open("w") as f:
