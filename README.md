@@ -1,5 +1,7 @@
 QtVSCodeStyle
 =============
+[![PyPI Latest Release](https://img.shields.io/pypi/v/qtvscodestyle.svg?color=orange)](https://pypi.org/project/qtvscodestyle/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/qtvscodestyle.svg?color=blue)](https://www.python.org/downloads/)
 [![Qt Versions](https://img.shields.io/badge/Qt-5%20|%206-blue.svg?&logo=Qt&logoWidth=18&logoColor=white)](https://www.qt.io/qt-for-python)
 [![License](https://img.shields.io/github/license/5yutan5/QtVSCodeStyle.svg?color=green)](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt/)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/5yutan5/QtVSCodeStyle.svg?logo=lgtm&logoWidth=18&color=success)](https://lgtm.com/projects/g/5yutan5/QtVSCodeStyle/alerts/)
@@ -12,11 +14,11 @@ QtVSCodeStyle enables to use VS Code themes in pyqt and pyside.
 The default and extension themes of VS Code can be used.
 
 
-## SCREENSHOT
+## SCREENSHOTS
 |[Dark (Visual Studio)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)|[Light (Visual Studio)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)|[Dark High Contrast](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)|
 | :--: | :--: | :--: |
 |[![widget_gallery_dark_theme](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_dark.png)|[![widget_gallery_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_light.png)|[![widget_gallery_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_hc.png)|
-|[Night Owl](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)|[One Dark Pro](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)|[Ayu Light](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)|
+|[Night Owl](https://github.com/sdras/night-owl-vscode-theme)|[One Dark Pro](https://github.com/Binaryify/OneDark-Pro)|[Ayu Light](https://github.com/ayu-theme/vscode-ayu)|
 |[![Night Owl](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_night_owl.png)|[![widget_gallery_one_dark_pro_theme](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_one_dark_pro.png)|[![widget_gallery_ayu_light_them](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/widget_gallery_ayu_light.png)
 
 etc...
@@ -103,7 +105,7 @@ Dark High Contrast   : DARK_HIGH_CONTRAST
 
 If you want to use a third party theme, you will need to download the theme file from the repository and load theme by using `load_stylesheet()`.  
 
-Simple example of using One Dark Pro.  
+Simple example using [One Dark Pro](https://github.com/Binaryify/OneDark-Pro).  
 One Dark Pro is one of the most used themes for VS Code.
 1. First of all, download or copy and paste [the theme file from the repository](https://github.com/Binaryify/OneDark-Pro/blob/master/themes/OneDark-Pro.json).  
 1. Then load the stylesheet using the saved file.
@@ -124,13 +126,13 @@ custom_colors = {"button.foreground": "#ff0000"}
 stylesheet = qtvsc.load_stylesheet(qtvsc.Theme.DARK_VS, custom_colors)
 ```
 
-To check available themes, run:
+To check available color id, run:
 
 ```Python
 qtvsc.list_color_id()
 ```
 
-Same as [VS Code's theme color document](https://code.visualstudio.com/api/references/theme-color).
+Color ids is almost the same as [VS Code's theme color document](https://code.visualstudio.com/api/references/theme-color). Some own color ids like disabled attribute are available.
 
 ### SVG and Font QIcon for VS Code style
 
@@ -138,7 +140,7 @@ You can also use various icon fonts and svg as QIcon.
 
 [![VS Code style icon](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/qicon_for_vscode_style.gif)](https://github.com/5yutan5/QtVSCodeStyle/blob/main/images/qicon_for_vscode_style.gif)
 
-QtVSCodeStyle identifies icons by symbolic and  icon name.
+QtVSCodeStyle identifies icons by symbolic and  icon name.  
 The following symbolic are currently available to use:
 
 - [Font Awesome Free(5.15.4)](https://fontawesome.com/) - Font Icon
@@ -154,7 +156,7 @@ You can use icon browser that displays all the available icons.
 python -m qtvscodestyle.examples.icon_browser
 ```
 
-Two functions, `theme_icon()` and `icon()` are available.
+Two functions, `theme_icon()` and `icon()` are available.  
 `theme_icon()` create QIcon will automatically switch the color based on the set color-id when you call `load_stylesheet(Another Theme)`.
 
 ```Python
@@ -295,7 +297,7 @@ python -m qtvscodestyle.resource_builder --help
 
 ## License
 
-MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).
+MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).  
 QtVSCodeStyle incorporates image assets from external sources.
 The icons for the QtVSCodeStyle are derived from:
 
