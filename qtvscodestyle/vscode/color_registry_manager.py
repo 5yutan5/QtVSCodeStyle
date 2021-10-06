@@ -84,43 +84,39 @@ class ColorRegistry:
 
     def _execute_transform(self, transform: dict, theme: str) -> Union[Color, None]:
         if transform["op"] is _ColorTransformType.Darken:
-            color_value = self._resolve_color_value(transform["value"], theme)  # type: ignore
+            color_value = self._resolve_color_value(transform["value"], theme)
             if type(color_value) is Color:
-                return color_value.darken(transform["factor"])  # type: ignore
+                return color_value.darken(transform["factor"])
         elif transform["op"] is _ColorTransformType.Lighten:
-            color_value = self._resolve_color_value(transform["value"], theme)  # type: ignore
+            color_value = self._resolve_color_value(transform["value"], theme)
             if type(color_value) is Color:
-                return color_value.lighten(transform["factor"])  # type: ignore
+                return color_value.lighten(transform["factor"])
         elif transform["op"] is _ColorTransformType.Transparent:
-            color_value = self._resolve_color_value(transform["value"], theme)  # type: ignore
+            color_value = self._resolve_color_value(transform["value"], theme)
             if type(color_value) is Color:
-                return color_value.transparent(transform["factor"])  # type: ignore
+                return color_value.transparent(transform["factor"])
         elif transform["op"] is _ColorTransformType.OneOf:
-            for candidate in transform["values"]:  # type: ignore
+            for candidate in transform["values"]:
                 color = self._resolve_color_value(candidate, theme)
                 if color:
                     return color
         elif transform["op"] is _ColorTransformType.IfDefinedThenElse:
             return self._resolve_color_value(
-                transform["then"] if self._is_defines(transform["if_"], theme) else transform["else_"],  # type: ignore
+                transform["then"] if self._is_defines(transform["if_"], theme) else transform["else_"],
                 theme,
             )
         elif transform["op"] is _ColorTransformType.LessProminent:
-            from_ = self._resolve_color_value(transform["value"], theme)  # type: ignore
+            from_ = self._resolve_color_value(transform["value"], theme)
             if not from_:
                 return None
-            background_color = self._resolve_color_value(transform["background"], theme)  # type: ignore
+            background_color = self._resolve_color_value(transform["background"], theme)
             if not background_color:
-                return from_.transparent(transform["factor"] * transform["transparency"])  # type: ignore
-            return (
-                Color.get_lighter_color(from_, background_color, transform["factor"]).transparent(  # type: ignore
-                    transform["transparency"]  # type: ignore
-                )
-                if from_.is_darker_than(background_color)
-                else Color.get_darker_color(from_, background_color, transform["factor"]).transparent(  # type: ignore
-                    transform["transparency"]  # type: ignore
-                )
-            )
+                return from_.transparent(transform["factor"] * transform["transparency"])
+            if from_.is_darker_than(background_color):
+                color = Color.get_lighter_color(from_, background_color, transform["factor"])
+            else:
+                color = Color.get_darker_color(from_, background_color, transform["factor"])
+            return color.transparent(transform["transparency"])
         return None
 
 
