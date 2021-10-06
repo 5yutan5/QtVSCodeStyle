@@ -2,7 +2,7 @@ import qtvscodestyle as qtvsc
 from qtvscodestyle.examples.widget_gallery.ui.dock import DockUI
 from qtvscodestyle.examples.widget_gallery.ui.home import HomeUI
 from qtvscodestyle.qtpy.QtCore import Qt
-from qtvscodestyle.qtpy.QtGui import QAction
+from qtvscodestyle.qtpy.QtGui import QAction, QActionGroup
 from qtvscodestyle.qtpy.QtWidgets import (
     QMainWindow,
     QMenuBar,
@@ -17,7 +17,7 @@ from qtvscodestyle.qtpy.QtWidgets import (
 
 class UI:
     def setup_ui(self, main_win: QMainWindow) -> None:
-        # VSCode icons
+        # Icons
         home_icon = qtvsc.theme_icon(qtvsc.Vsc.HOME, "activityBar.foreground")
         multi_windows_icon = qtvsc.theme_icon(qtvsc.Vsc.MULTIPLE_WINDOWS, "activityBar.foreground")
         settings_icon = qtvsc.theme_icon(qtvsc.Vsc.SETTINGS_GEAR, "activityBar.foreground")
@@ -27,17 +27,20 @@ class UI:
         clear_icon = qtvsc.theme_icon(qtvsc.Vsc.CLOSE)
         theme_icon = qtvsc.theme_icon(qtvsc.Vsc.COLOR_MODE)
 
-        # Widgets
-        self.central_window = QMainWindow()
-        self.stack_widget = QStackedWidget()
-
-        self.action_change_home_window = QAction(home_icon, "Move home")
-        self.action_change_dock_window = QAction(multi_windows_icon, "Move dock")
+        # Actions
+        self.action_change_home = QAction(home_icon, "Move to home")
+        self.action_change_dock = QAction(multi_windows_icon, "Move to dock")
         self.action_open_folder = QAction(folder_open_icon, "Open folder dialog")
         self.action_open_color_dialog = QAction(palette_icon, "Open color dialog", main_win)
         self.action_enable = QAction(circle_icon, "Enable")
         self.action_disable = QAction(clear_icon, "Disable")
         self.actions_theme = [QAction(theme.value["name"]) for theme in qtvsc.Theme]
+
+        self.action_group_toolbar = QActionGroup(main_win)
+
+        # Widgets
+        self.central_window = QMainWindow()
+        self.stack_widget = QStackedWidget()
 
         activitybar = QToolBar("activitybar")
         toolbar = QToolBar("Toolbar")
@@ -50,15 +53,19 @@ class UI:
 
         self.spacer = QToolButton()
 
+        # Setup Actions
+        self.action_change_home.setCheckable(True)
+        self.action_change_dock.setCheckable(True)
+        self.action_change_home.setChecked(True)
+        self.action_group_toolbar.addAction(self.action_change_home)
+        self.action_group_toolbar.addAction(self.action_change_dock)
+
         # Setup Widgets
         self.spacer.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
         self.spacer.setEnabled(False)
 
-        self.action_change_home_window.setCheckable(True)
-        self.action_change_dock_window.setCheckable(True)
-        self.action_change_home_window.setChecked(True)
         activitybar.setMovable(False)
-        activitybar.addActions([self.action_change_home_window, self.action_change_dock_window])
+        activitybar.addActions([self.action_change_home, self.action_change_dock])
         activitybar.addWidget(self.spacer)
         activitybar.addWidget(tool_button_settings)
 
