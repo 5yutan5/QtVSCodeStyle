@@ -67,6 +67,8 @@ QWidget {
 
     filedialog-parent-directory-icon: $url{"icon": "arrow-up.svg", "id": "icon_foreground", "rotate": "0"};
     filedialog-new-directory-icon: $url{"icon": "new-folder.svg", "id": "icon_foreground", "rotate": "0"};
+    filedialog-detailedview-icon: $url{"icon": "list-flat.svg", "id": "icon_foreground", "rotate": "0"};
+    filedialog-listview-icon: $url{"icon": "table.svg", "id": "icon_foreground", "rotate": "0"};
     titlebar-close-icon: $url{"icon": "close.svg", "id": "icon_foreground", "rotate": "0"};
     titlebar-normal-icon: $url{"icon": "flip_to_front.svg", "id": "icon_foreground", "rotate": "0"};
 }
@@ -131,6 +133,7 @@ QStatusBar {
     color: $statusBar_foreground;
     background-color: $statusBar_background;
     border-top: 1px solid $statusBar_border;
+    max-height: 24px;
 }
 QStatusBar::item {
     border: none;
@@ -138,9 +141,11 @@ QStatusBar::item {
 
 QStatusBar QWidget {
     background-color: transparent;
-    padding: 3px;
+    border-radius: 0;
+    border: 1px;
+    padding: 1px;
 }
-QStatusBar QWidget:hover {
+QStatusBar QWidget:!checked:hover {
     background-color: $statusBarItem_hoverBackground;
 }
 QStatusBar QWidget:pressed {
@@ -392,8 +397,9 @@ QPushButton:pressed {
     background-color: $button_background_active;
 }
 QPushButton:checked {
-    background-color: $button_background_active;
-    border-color: $focusBorder;
+    /* background-color: $button_background_active; */
+    border-color: $button_border_active;
+    $type_patch{"types": "hc", "value": "border-color: $focusBorder;"};
 }
 QPushButton:disabled {
     background-color: $button_background_disabled;
@@ -959,69 +965,6 @@ QTreeView::branch:open:has-children:has-siblings:disabled  {
     image: $url{"icon": "chevron-down.svg", "id": "icon_foreground_disabled", "rotate": "0"};
 }
 
-/* QHeaderView ------------------------------------------------------------
-
-examples: https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-qheaderview
-
---------------------------------------------------------------------------- */
-QHeaderView {
-    padding: 0;
-    margin: 0;
-    border: none;
-}
-QHeaderView::section {
-    color: $titleBar_activeForeground;
-    background-color: $debugToolBar_background;
-    text-align: left;
-    font-size: 13px;
-    padding: 0 4px;
-    border: 1px solid transparent;
-    $type_patch{"types": "dark | light", "value": "background-color: $debugToolBar_background;"};
-    $type_patch{"types": "hc", "value": "border-color: $editorGroup_border;"};
-}
-QHeaderView::section:disabled {
-    color: $titleBar_activeForeground_disabled;
-}
-QHeaderView::section:horizontal {
-    border-top-width: 2px;
-    margin-right: 1px;
-}
-QHeaderView::section:vertical {
-    border-left-width: 2px solid transparent;
-    margin-bottom: 1px;
-}
-QHeaderView::section:horizontal:on,
-QHeaderView::section:horizontal:pressed:enabled {
-    border-top-color: $focusBorder;
-}
-QHeaderView::section:vertical:on,
-QHeaderView::section:vertical:pressed:enabled {
-    border-left-color: $focusBorder;
-}
-QHeaderView::section:horizontal:on:disabled {
-    border-top-color: $focusBorder_disabled;
-}
-QHeaderView::section:vertical:on:disabled {
-    border-left-color: $focusBorder_disabled;
-}
-QHeaderView::section::last, QHeaderView::section::only-one {
-    margin: 0;
-}
-QHeaderView::down-arrow:horizontal {
-    width: 20px;
-    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
-}
-QHeaderView::down-arrow:disabled {
-    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground_disabled", "rotate": "0"};
-}
-QHeaderView::up-arrow:horizontal {
-    width: 20px;
-    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
-}
-QHeaderView::up-arrow:disabled {
-    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground_disabled", "rotate": "0"};
-}
-
 /* QTableView -------------------------------------------------------------
 
 Set the background color to black.
@@ -1055,6 +998,78 @@ QTableView QTableCornerButton::section {
 }
 QTableView QTableCornerButton::section:pressed {
     image: $url{"icon": "corner_button.svg", "id": "focusBorder", "rotate": "0"};
+}
+
+/* QHeaderView ------------------------------------------------------------
+
+examples: https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-qheaderview
+
+--------------------------------------------------------------------------- */
+QHeaderView {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+QHeaderView::section {
+    color: $titleBar_activeForeground;
+    background-color: $debugToolBar_background;
+    text-align: left;
+    font-size: 13px;
+    padding: 0 4px;
+    border: none;
+    $type_patch{"types": "dark | light", "value": "background-color: $debugToolBar_background;"};
+    $type_patch{"types": "hc", "value": "border-color: $editorGroup_border;"};
+}
+QHeaderView::section:disabled {
+    color: $titleBar_activeForeground_disabled;
+}
+QHeaderView::section:horizontal {
+    border-top: 2px solid transparent;
+    margin-right: 1px;
+}
+QHeaderView::section:vertical {
+    border-left: 2px solid transparent;
+    margin-bottom: 1px;
+}
+QHeaderView::section:horizontal:on,
+QHeaderView::section:vertical:on {
+    border-color: $focusBorder;
+}
+QHeaderView::section:horizontal:on:disabled,
+QHeaderView::section:vertical:on:disabled {
+    border-color: $focusBorder_disabled;
+}
+QHeaderView::section::last, QHeaderView::section::only-one {
+    margin: 0;
+}
+QHeaderView::down-arrow {
+    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground", "rotate": "0"};
+}
+QHeaderView::down-arrow:disabled {
+    image: $url{"icon": "chevron-down.svg", "id": "icon_foreground_disabled", "rotate": "0"};
+}
+QHeaderView::up-arrow {
+    image: $url{"icon": "chevron-up.svg", "id": "icon_foreground", "rotate": "0"};
+}
+QHeaderView::up-arrow:disabled {
+    image: $url{"icon": "chevron-up.svg", "id": "icon_foreground_disabled", "rotate": "0"};
+}
+QHeaderView::down-arrow::horizontal,
+QHeaderView::up-arrow::horizontal {
+    width: 15px;
+    padding-right: 2px;
+}
+QHeaderView::down-arrow::vertical,
+QHeaderView::up-arrow::vertical {
+    height: 0px;
+}
+
+QTreeView[sortingEnabled="false"] QHeaderView::down-arrow,
+QTreeView[sortingEnabled="false"] QHeaderView::up-arrow,
+QTableView[sortingEnabled="false"] QHeaderView::down-arrow,
+QTableView[sortingEnabled="false"] QHeaderView::up-arrow {
+    width: 0;
+    padding: 0;
 }
 
 /* QCalendarWidget --------------------------------------------------------

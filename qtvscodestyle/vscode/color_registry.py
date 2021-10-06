@@ -711,13 +711,22 @@ def setup_default_color_registry() -> None:
         },
     )
 
-    register_color(
+    button_background_active = register_color(
         "button.background.active",
         {
             "dark": lighten(buttonBackground, 0.5),
             "light": lighten(buttonBackground, 0.4),
             "hc": buttonBackground,
         },
+    )
+
+    register_color(
+        "button.border.active",
+        {
+            "dark": less_prominent(button_background_active, Color.white(), 1, 1),
+            "light": less_prominent(button_background_active, Color.black(), 0.6, 1),
+            "hc": focusBorder,
+        }
     )
 
     register_color(
