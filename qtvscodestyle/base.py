@@ -3,19 +3,24 @@ from __future__ import annotations
 import json
 import re
 import shutil
+from distutils.version import StrictVersion
 from enum import Enum
 from importlib import resources
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Optional, Union
 
+from qtvscodestyle.qtpy.qt_compat import QtImportError
 from qtvscodestyle.stylesheet.build import build_stylesheet
-from qtvscodestyle.util import multireplace
+from qtvscodestyle.util import create_logger, multireplace
 from qtvscodestyle.vscode.color import Color
 from qtvscodestyle.vscode.color_registry import setup_default_color_registry
 from qtvscodestyle.vscode.color_registry_manager import ColorRegistry
 
 setup_default_color_registry()
+
+# Setup logger
+_logger = create_logger(__name__)
 
 # Setup project dir
 _RESOURCES_BASE_DIR = Path.home() / ".q_vscode_style" / "resources"
@@ -87,6 +92,46 @@ def _merge_colors_to_default(colors: dict[str, str], type: str) -> dict[str, Opt
     return colors_merged
 
 
+def _apply_application_patches(colors: dict[str, Optional[Color]]) -> None:
+    from qtvscodestyle.qtpy import __version__
+
+    BASE_LOG_MESSAGE = "Failed to apply the placeholder color for various text input widgets."
+
+    try:
+        from qtvscodestyle.qtpy.QtCore import QCoreApplication
+        from qtvscodestyle.qtpy.QtGui import QColor, QPalette
+    except QtImportError:
+        _logger.warning(BASE_LOG_MESSAGE)
+        return
+    if __version__ is not None:
+        if StrictVersion(__version__) >= StrictVersion("6.0"):
+            _logger.info("In qt6, placeholder color for various text input widgets is not applied due to a bug.")
+            return
+
+    placeholder_color = colors["input.placeholderForeground"]
+    r, g, b, a = placeholder_color.rgba  # type: ignore
+    placeholder_q_color = QColor(int(r), int(g), int(b), int(a * 250))
+
+    app = QCoreApplication.instance()
+    if app is None:
+        _logger.warning(
+            BASE_LOG_MESSAGE + "\n\tNo QCoreApplication instance found. Application patches not applied. "
+            "\n\tYou have to call load_stylesheet function after instantiation of QApplication to take effect. "
+        )
+        return
+    palette = app.palette()
+    try:
+        placeholder_color_role = QPalette.ColorRole.PlaceholderText
+    except AttributeError:
+        _logger.warning(
+            BASE_LOG_MESSAGE
+            + f"\n\tRequires Qt5.12 or higher to apply placeholder color. Current version is Qt{__version__}"
+        )
+        return
+    palette.setColor(placeholder_color_role, placeholder_q_color)
+    app.setPalette(palette)
+
+
 def _load_stylesheet(
     theme: Union[Theme, str, Path, dict],
     custom_colors: dict[str, str],
@@ -118,10 +163,10 @@ def _load_stylesheet(
             for engine in engines:
                 color = colors[id]
                 engine.change_color(Color.white() if color is None else color)
-    except ImportError as e:
-        print("-------------------------------------------------------------")
-        print(e)
-        print("-------------------------------------------------------------")
+    except QtImportError:
+        pass
+
+    _apply_application_patches(colors)
     return build_stylesheet(colors, theme_property["type"], output_svg_path, is_designer)
 
 
