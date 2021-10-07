@@ -1,4 +1,5 @@
 from __future__ import annotations
+import logging
 
 import re
 from typing import Optional
@@ -20,3 +21,12 @@ def to_svg_color_format(color: Optional[Color]) -> str:
         return 'fill=""'
     r, g, b, a = color.rgba
     return f'fill="rgb({r}, {g}, {b})" fill-opacity="{a}"'
+
+
+def create_logger(logger_name: str) -> logging.Logger:
+    logger = logging.getLogger(logger_name)
+    logger.propagate = False
+    ch = logging.StreamHandler()
+    ch.setFormatter(logging.Formatter("[%(name)s] [%(levelname)s] %(message)s"))
+    logger.addHandler(ch)
+    return logger

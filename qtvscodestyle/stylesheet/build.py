@@ -9,8 +9,10 @@ from importlib import resources
 from pathlib import Path
 from typing import Optional
 
-from qtvscodestyle.util import multireplace, to_svg_color_format
+from qtvscodestyle.util import create_logger, multireplace, to_svg_color_format
 from qtvscodestyle.vscode.color import Color
+
+_logger = create_logger(__name__)
 
 
 # A class that handle the properties of the $url{...} variable in the stylesheet template.
@@ -23,11 +25,9 @@ class _Url:
 
 
 def _parse_env_patch(stylesheet: str) -> dict[str, str]:
-    try:
-        from qtvscodestyle.qtpy import __version__ as qt_version
-    except ImportError:
-        print("Failed to load Qt version. Load stylesheet as the latest version.")
-        print("-----------------------------------------------------------------")
+    from qtvscodestyle.qtpy import __version__ as qt_version
+    if qt_version is None:
+        _logger.warning("Failed to detect Qt version. -> Load stylesheet as the latest version.")
         qt_version = "10.0.0"  # Fairly future version for always setting latest version.
 
     # greater_equal and less_equal must be evaluated before greater and less.
