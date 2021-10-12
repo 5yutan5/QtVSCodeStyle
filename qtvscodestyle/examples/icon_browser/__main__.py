@@ -13,8 +13,9 @@
 # (see NOTICE.md in the QtVSCodeStyle root directory for details)
 # ============================================================================
 
+import qtvscodestyle as qtvsc
 from qtvscodestyle.qtpy.QtCore import QSize, QSortFilterProxyModel, QStringListModel, Qt, QTimer
-from qtvscodestyle.qtpy.QtGui import QKeySequence, QShortcut, QGuiApplication
+from qtvscodestyle.qtpy.QtGui import QGuiApplication, QKeySequence, QShortcut
 from qtvscodestyle.qtpy.QtWidgets import (
     QApplication,
     QComboBox,
@@ -27,7 +28,6 @@ from qtvscodestyle.qtpy.QtWidgets import (
     QVBoxLayout,
 )
 
-import qtvscodestyle as qtvsc
 # TODO: Set icon colour and copy code with color kwarg
 
 VIEW_COLUMNS = 5
@@ -113,7 +113,9 @@ class IconBrowser(QMainWindow):
         self.setCentralWidget(frame)
 
         QShortcut(
-            QKeySequence(Qt.Key.Key_Return), self, self._copy_icon_text,
+            QKeySequence(Qt.Key.Key_Return),
+            self,
+            self._copy_icon_text,
         )
 
         self._line_edit.setFocus()
@@ -218,22 +220,11 @@ class IconModel(QStringListModel):
         if role == Qt.ItemDataRole.DecorationRole:
             icon_string = self.data(index, Qt.ItemDataRole.DisplayRole)
             prefix, icon_name = icon_string.split(".")  # type: ignore
-            if prefix == "vs":
-                for specifier in qtvsc.Vsc:
-                    if specifier.name.lower() == icon_name:
-                        return qtvsc.theme_icon(specifier)
-            if prefix == "fa-r":
-                for specifier in qtvsc.FaRegular:
-                    if specifier.name.lower() == icon_name:
-                        return qtvsc.theme_icon(specifier)
-            if prefix == "fa-b":
-                for specifier in qtvsc.FaBrands:
-                    if specifier.name.lower() == icon_name:
-                        return qtvsc.theme_icon(specifier)
-            if prefix == "fa-s":
-                for specifier in qtvsc.FaSolid:
-                    if specifier.name.lower() == icon_name:
-                        return qtvsc.theme_icon(specifier)
+            specifiers = {"vs": qtvsc.Vsc, "fa-r": qtvsc.FaRegular, "fa-b": qtvsc.FaBrands, "fa-s": qtvsc.FaSolid}
+            specifier = specifiers[prefix]
+            for specifier in specifiers[prefix]:
+                if specifier.name.lower() == icon_name:
+                    return qtvsc.theme_icon(specifier)
         return super().data(index, role)
 
 

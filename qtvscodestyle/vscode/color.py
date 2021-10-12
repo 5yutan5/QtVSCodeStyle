@@ -17,8 +17,8 @@
 from __future__ import annotations
 
 import colorsys
-from functools import lru_cache
 import math
+from functools import lru_cache
 from typing import Union
 
 

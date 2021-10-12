@@ -37,6 +37,7 @@ class SVGBufferIconEngine(QIconEngine):
 
     see: https://doc.qt.io/qt-5/qiconengine.html
     """
+
     def __init__(self, xml: str, color: Color) -> None:
         self._xml = xml
         self._color = color

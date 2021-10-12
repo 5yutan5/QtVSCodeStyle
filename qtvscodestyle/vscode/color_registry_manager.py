@@ -82,7 +82,7 @@ class ColorRegistry:
     def _is_defines(self, color_id: _ColorIdentifier, theme: str) -> bool:
         return ColorRegistry._default_colors[theme][color_id] != self._colors[theme][color_id]
 
-    def _execute_transform(self, transform: dict, theme: str) -> Union[Color, None]:
+    def _execute_transform(self, transform: dict, theme: str) -> Union[Color, None]:  # noqa: C901
         if transform["op"] is _ColorTransformType.Darken:
             color_value = self._resolve_color_value(transform["value"], theme)
             if type(color_value) is Color:

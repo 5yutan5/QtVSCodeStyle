@@ -103,11 +103,11 @@ Dark High Contrast   : DARK_HIGH_CONTRAST
 
 ### Use extension themes
 
-If you want to use a third party theme, you will need to download the theme file from the repository and load theme by using `load_stylesheet()`.  
+If you want to use a third party theme, you will need to download the theme file from the repository and load theme by using `load_stylesheet()`.
 
-Simple example using [One Dark Pro](https://github.com/Binaryify/OneDark-Pro).  
+Simple example using [One Dark Pro](https://github.com/Binaryify/OneDark-Pro).
 One Dark Pro is one of the most used themes for VS Code.
-1. First of all, download or copy and paste [the theme file from the repository](https://github.com/Binaryify/OneDark-Pro/blob/master/themes/OneDark-Pro.json).  
+1. First of all, download or copy and paste [the theme file from the repository](https://github.com/Binaryify/OneDark-Pro/blob/master/themes/OneDark-Pro.json).
 1. Then load the stylesheet using the saved file.
    ```Python
    theme_file = r"OneDark-Pro.json"
@@ -117,7 +117,7 @@ One Dark Pro is one of the most used themes for VS Code.
 
 ### Color customization
 
-The configuration method is the same as [workbench.colorCustomizations](https://code.visualstudio.com/api/extension-guides/color-theme#workbench-colors) of VSCode.  
+The configuration method is the same as [workbench.colorCustomizations](https://code.visualstudio.com/api/extension-guides/color-theme#workbench-colors) of VSCode.
 About color code format, see [https://code.visualstudio.com/api/references/theme-color#color-formats](https://code.visualstudio.com/api/references/theme-color#color-formats).
 
 ```Python
@@ -140,7 +140,7 @@ You can also use various icon fonts and svg as QIcon.
 
 [![VS Code style icon](https://raw.githubusercontent.com/5yutan5/QtVSCodeStyle/main/images/qicon_for_vscode_style.gif)](https://github.com/5yutan5/QtVSCodeStyle/blob/main/images/qicon_for_vscode_style.gif)
 
-QtVSCodeStyle identifies icons by symbolic and  icon name.  
+QtVSCodeStyle identifies icons by symbolic and  icon name.
 The following symbolic are currently available to use:
 
 - [Font Awesome Free(5.15.4)](https://fontawesome.com/) - Font Icon
@@ -156,7 +156,7 @@ You can use icon browser that displays all the available icons.
 python -m qtvscodestyle.examples.icon_browser
 ```
 
-Two functions, `theme_icon()` and `icon()` are available.  
+Two functions, `theme_icon()` and `icon()` are available.
 `theme_icon()` create QIcon will automatically switch the color based on the set color-id when you call `load_stylesheet(Another Theme)`.
 
 ```Python
@@ -237,7 +237,7 @@ python -m qtvscodestyle.examples.widget_gallery
 
 ## Custom properties
 
-This module provides several custom properties for applying VS Code's style.  
+This module provides several custom properties for applying VS Code's style.
 
 For example, if you set the `activitybar` to `type` custom property of QToolbar, the style of the activitybar will be applied.
 
@@ -255,9 +255,9 @@ activitybar.setProperty("type", "activitybar")
 
 ## Build resources
 
-QtVSCodeStyle creates and deletes icon files dynamically using temporary folder.  
-The style sheet you created will no longer be available after you exit the program.  
-Therefore, QtVSCodeStyle provides the tool to build style sheets with resources that can be used after you exit the program.  
+QtVSCodeStyle creates and deletes icon files dynamically using temporary folder.
+The style sheet you created will no longer be available after you exit the program.
+Therefore, QtVSCodeStyle provides the tool to build style sheets with resources that can be used after you exit the program.
 
 In order to build style sheets, run:
 ```plaintext
@@ -297,7 +297,7 @@ python -m qtvscodestyle.resource_builder --help
 
 ## License
 
-MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).  
+MIT, see [LICENSE.txt](https://github.com/5yutan5/QtVSCodeStyle/blob/main/LICENSE.txt).
 QtVSCodeStyle incorporates image assets from external sources.
 The icons for the QtVSCodeStyle are derived from:
 

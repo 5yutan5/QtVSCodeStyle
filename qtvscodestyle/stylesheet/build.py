@@ -26,6 +26,7 @@ class _Url:
 
 def _parse_env_patch(stylesheet: str) -> dict[str, str]:
     from qtvscodestyle.qtpy import __version__ as qt_version
+
     if qt_version is None:
         _logger.warning("Failed to detect Qt version. -> Load stylesheet as the latest version.")
         qt_version = "10.0.0"  # Fairly future version for always setting latest version.

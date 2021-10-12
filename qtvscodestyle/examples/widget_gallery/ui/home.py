@@ -1,6 +1,7 @@
 from typing import Any
-from qtvscodestyle.const import FaRegular
 
+import qtvscodestyle as qtvsc
+from qtvscodestyle.const import FaRegular
 from qtvscodestyle.qtpy.QtCore import QAbstractTableModel, QModelIndex, Qt
 from qtvscodestyle.qtpy.QtGui import QTextOption
 from qtvscodestyle.qtpy.QtWidgets import (
@@ -31,7 +32,6 @@ from qtvscodestyle.qtpy.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-import qtvscodestyle as qtvsc
 
 
 class _Group1(QGroupBox):

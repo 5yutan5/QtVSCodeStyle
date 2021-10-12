@@ -27,7 +27,9 @@ def _parse_args() -> argparse.Namespace:
         default=str(Path.cwd()),
     )
     parser.add_argument(
-        "-c", "--custom-colors-path", help="Path of the json file where the custom colors are saved.",
+        "-c",
+        "--custom-colors-path",
+        help="Path of the json file where the custom colors are saved.",
     )
     args = parser.parse_args()
     return args
