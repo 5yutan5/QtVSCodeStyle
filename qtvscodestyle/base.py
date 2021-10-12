@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import re
-import shutil
 from distutils.version import StrictVersion
 from enum import Enum
 from importlib import resources
@@ -24,8 +23,6 @@ _logger = create_logger(__name__)
 
 # Setup project dir
 _RESOURCES_BASE_DIR = Path.home() / ".q_vscode_style" / "resources"
-# Clean up project dir
-shutil.rmtree(str(_RESOURCES_BASE_DIR), ignore_errors=True)
 _RESOURCES_BASE_DIR.mkdir(parents=True, exist_ok=True)
 
 global_current_colors = {}
