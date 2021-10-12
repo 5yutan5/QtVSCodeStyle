@@ -42,6 +42,7 @@ build-backend = "poetry.core.masonry.api"
 max-line-length = 119
 max-complexity = 10
 extend-ignore = "E203, W503"
+per-file-ignores = ["qtvscodestyle/vscode/color_registry.py:F841"]
 
 [tool.black]
 line-length = 119

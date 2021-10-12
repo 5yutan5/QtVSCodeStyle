@@ -1,0 +1,4 @@
+extraction:
+  python:
+    index:
+      exclude: "qtvscodestyle/vscode/color_registry.py"
