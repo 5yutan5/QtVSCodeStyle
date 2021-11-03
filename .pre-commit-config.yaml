@@ -11,8 +11,8 @@ repos:
         entry: pflake8
         additional_dependencies: [pyproject-flake8]
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.9.3
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.10.0
     hooks:
       - id: isort
 
